@@ -1,0 +1,12 @@
+{
+  "date": "2026-07-18",
+  "framework": "vanilla-html",
+  "font_stack": "Noto Serif SC + IBM Plex Sans + Noto Sans SC",
+  "palette": "custom near-white / blue-ink / neutral graphite OKLCH",
+  "motion": "one orchestrated reveal with reduced-motion fallback",
+  "spacing": "Hallmark 4pt named scale",
+  "operation": "audit + polish",
+  "finding": "Kept the Split Studio structure and official MathArts copy; tightened Chinese typography and vertical rhythm, removed duplicate repository links, added active-section navigation and an ARIA command palette with focus restoration.",
+  "responsive": "verified at 320 / 375 / 414 / 768 / 1280 CSS px with no horizontal overflow and no visible target below 44px",
+  "hallmark_gate": "58/58 pass"
+}

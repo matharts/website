@@ -1,0 +1,46 @@
+[
+  {
+    "date": "2026-07-18",
+    "operation": "audit + polish",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / roman-serif / neutral",
+    "vibe": "技术 学术 神秘 黑白 东方",
+    "enrichment": "none",
+    "brief": "MathArts responsive typography, navigation state and command palette polish",
+    "nav": "N3 active-section side rail + sticky mobile menu",
+    "footer": "Ft1",
+    "gate": "58/58 pass"
+  },
+  {
+    "date": "2026-07-18",
+    "macrostructure": "Split Studio",
+    "theme": "custom",
+    "theme_axes": "light / roman-serif / neutral",
+    "vibe": "技术 学术 神秘 黑白 东方",
+    "enrichment": "none",
+    "brief": "MathArts all-audience organization explanation and contribution website",
+    "nav": "N3",
+    "footer": "Ft1"
+  },
+  {
+    "date": "2026-07-18",
+    "macrostructure": "Marquee Hero",
+    "theme": "custom",
+    "theme_axes": "light / roman-serif / warm",
+    "vibe": "暖纸 墨黑 朱砂 数术年鉴",
+    "enrichment": "none",
+    "brief": "MathArts oriental modern open-source almanac redesign",
+    "nav": "N6",
+    "footer": "Ft4"
+  },
+  {
+    "date": "2026-07-18",
+    "macrostructure": "Ecosystem Index",
+    "theme": "Cobalt",
+    "enrichment": "E5 Tier-B ecosystem SVG",
+    "brief": "MathArts GitHub open-source organization website",
+    "nav": "N13",
+    "footer": "Ft5"
+  }
+]

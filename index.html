@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="MathArts 以现代数学、计算机科学与软件工程，建设开放、可追溯、可验证的中国数术数字基础设施。">
+  <title>MathArts · 中国数术数字基础设施</title>
+  <link rel="icon" href="avatar.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <nav class="rail" aria-label="页面索引">
+    <a class="rail__brand" href="#top" aria-label="MathArts 首页" data-section-nav>MathArts</a>
+    <div class="rail__links">
+      <a href="#about" data-section-nav><span>组织</span><i aria-hidden="true"></i></a>
+      <a href="#work" data-section-nav><span>成果</span><i aria-hidden="true"></i></a>
+      <a href="#method" data-section-nav><span>治理</span><i aria-hidden="true"></i></a>
+      <a href="#participate" data-section-nav><span>参与</span><i aria-hidden="true"></i></a>
+    </div>
+    <button class="rail__search" type="button" data-search-trigger aria-label="检索项目">⌘K</button>
+  </nav>
+
+  <header class="mobile-head" aria-label="移动端导航">
+    <a class="mobile-head__brand" href="#top"><img src="avatar.png" width="40" height="40" alt=""><span>MathArts</span></a>
+    <details class="mobile-head__menu">
+      <summary>菜单</summary>
+      <nav aria-label="移动端页面索引">
+        <a href="#about" data-section-nav>了解组织</a>
+        <a href="#work" data-section-nav>浏览成果</a>
+        <a href="#method" data-section-nav>组织治理</a>
+        <a href="#participate" data-section-nav>关注与参与</a>
+        <button type="button" data-search-trigger>检索项目</button>
+      </nav>
+    </details>
+  </header>
+
+  <div class="page-shell">
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero__statement reveal" style="--i: 0">
+          <div class="hero__mark"><img src="avatar.png" width="52" height="52" alt=""><span>MathArts · Open Source</span></div>
+          <h1 id="hero-title"><span class="hero__line">用象数描述万物，</span><br><span class="hero__line">用术法计算万物。</span></h1>
+          <p>MathArts 以现代数学、计算机科学与软件工程，建设开放、可追溯、可验证的中国数术数字基础设施。</p>
+          <div class="hero__actions">
+            <a href="#about">了解 MathArts ↓</a>
+            <a href="https://github.com/matharts" target="_blank" rel="noreferrer">关注组织 ↗</a>
+          </div>
+        </div>
+        <div class="hero__proof reveal" style="--i: 1" role="group" aria-label="MathArts 工作范围">
+          <p class="hero__monogram" aria-hidden="true">数<br>术</p>
+          <dl>
+            <div><dt>组织定位</dt><dd>中国数术数字基础设施</dd></div>
+            <div><dt>使用方法</dt><dd>现代数学、计算机科学与软件工程</dd></div>
+            <div><dt>建设原则</dt><dd>开放、可追溯、可验证</dd></div>
+          </dl>
+          <p class="hero__chain">MATHARTS.CN / GITHUB</p>
+        </div>
+      </section>
+
+      <section class="about split" id="about" aria-labelledby="about-title">
+        <div class="split__lead">
+          <h2 id="about-title">MathArts<br>在做什么？</h2>
+          <p>MathArts 围绕中国数术建设开放源码生态。目前公开项目包括核心基础设施、天文历法与紫微斗数领域引擎、可复用 Agent Skills，以及用于组织协作的治理文档和自动化工具。</p>
+        </div>
+        <div class="split__proof split__proof--ink">
+          <blockquote>组织政策与项目规则，<br>分别维护；<br>同一问题只保留一个权威来源。</blockquote>
+          <p>职责明确 · 公开优先 · 证据优先</p>
+        </div>
+      </section>
+
+      <section class="work" id="work" aria-labelledby="work-title">
+        <header class="work__head">
+          <h2 id="work-title">做了哪些事情？</h2>
+          <p>MathArts 的公开工作分为领域引擎、生态基础设施与组织治理。每个项目都可以直接进入 GitHub 阅读代码、文档与讨论。</p>
+        </header>
+
+        <article class="project-band">
+          <div class="project-band__intro">
+            <h3>领域引擎</h3>
+            <p>目前包含紫微斗数排盘与天文历法两个标准驱动引擎。</p>
+          </div>
+          <div class="project-band__list project-band__list--ink">
+            <div class="project"><span><strong><a href="https://github.com/matharts/ziwei" target="_blank" rel="noreferrer">ziwei ↗</a></strong><small>MathArts 开源生态的标准驱动紫微斗数排盘引擎</small></span></div>
+            <div class="project"><span><strong><a href="https://github.com/matharts/epheon" target="_blank" rel="noreferrer">epheon ↗</a></strong><small>MathArts 开源生态的标准驱动天文历法引擎</small></span></div>
+          </div>
+        </article>
+
+        <article class="project-band project-band--reverse">
+          <div class="project-band__intro">
+            <h3>生态基础设施</h3>
+            <p>为 MathArts 开源生态提供基础设施、核心标准库和可复用 Agent Skills。</p>
+          </div>
+          <div class="project-band__list project-band__list--paper">
+            <div class="project"><span><strong><a href="https://github.com/matharts/matharts" target="_blank" rel="noreferrer">matharts ↗</a></strong><small>MathArts 开源生态的基础设施与核心标准库</small></span></div>
+            <div class="project"><span><strong><a href="https://github.com/matharts/skills" target="_blank" rel="noreferrer">skills ↗</a></strong><small>MathArts 开源生态的可复用 Agent Skills 与能力模块仓库</small></span></div>
+          </div>
+        </article>
+
+        <article class="project-band">
+          <div class="project-band__intro">
+            <h3>工具与治理</h3>
+            <p>维护组织级标签、公共配置、贡献入口与必要的跨仓库自动化。</p>
+          </div>
+          <div class="project-band__list project-band__list--ink">
+            <div class="project"><span><strong><a href="https://github.com/matharts/sync-labels-action" target="_blank" rel="noreferrer">sync-labels ↗</a></strong><small>使用标签清单与所有权策略，同步组织管理的 GitHub 标签并保留仓库自行维护的标签</small></span></div>
+            <div class="project"><span><strong><a href="https://github.com/matharts/.github" target="_blank" rel="noreferrer">.github ↗</a></strong><small>组织主页、治理、默认社区文件、贡献入口与跨仓库自动化</small></span></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="method split" id="method" aria-labelledby="method-title">
+        <div class="split__lead split__lead--ink">
+          <h2 id="method-title">组织如何协作？</h2>
+          <p>MathArts 的组织治理明确区分组织政策与项目规则，并以公开记录、证据和清晰责任边界支持协作。</p>
+        </div>
+        <ol class="method__steps">
+          <li><span>01</span><div><h3>公开优先</h3><p>不涉及安全、隐私或人员保护的决定，在可追溯的 Issue、Discussion 或 Pull Request 中作出。</p></div></li>
+          <li><span>02</span><div><h3>证据优先</h3><p>技术和领域判断尽可能引用定义、资料、测试、推导或可复现结果。</p></div></li>
+          <li><span>03</span><div><h3>最小权限</h3><p>组织、仓库、自动化和发布权限，只授予完成职责所需的主体。</p></div></li>
+          <li><span>04</span><div><h3>职责明确</h3><p>组织政策与项目规则分别维护，不建立含混的中间权威层。</p></div></li>
+        </ol>
+      </section>
+
+      <section class="participate split" id="participate" aria-labelledby="participate-title">
+        <div class="split__lead">
+          <h2 id="participate-title">找到正确的<br>参与入口。</h2>
+          <p>可复现的软件缺陷和明确的改进建议应提交到目标仓库；开放问题、方向讨论或跨仓库想法进入 MathArts Discussions。修改前请先阅读目标仓库的 README 与贡献指南。</p>
+        </div>
+        <div class="participate__routes">
+          <div><a href="https://github.com/matharts" target="_blank" rel="noreferrer">关注 MathArts ↗</a><small>查看组织动态与全部仓库</small></div>
+          <div><a href="#work">浏览项目 ↑</a><small>了解六项公开工作的目标</small></div>
+          <div><a href="https://github.com/orgs/matharts/discussions" target="_blank" rel="noreferrer">参与讨论 ↗</a><small>提出问题、建议与研究线索</small></div>
+          <div><a href="https://github.com/matharts/.github/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">阅读贡献方式 ↗</a><small>参与文档、测试与代码实现</small></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" aria-label="站点页脚">
+      <div class="footer__brand"><img src="avatar.png" width="56" height="56" alt=""><strong>MathArts</strong></div>
+      <p>以现代数学、计算机科学与软件工程，建设开放、可追溯、可验证的中国数术数字基础设施。</p>
+      <div class="footer__links"><a href="https://github.com/matharts" target="_blank" rel="noreferrer">GitHub ↗</a><a href="https://github.com/orgs/matharts/discussions" target="_blank" rel="noreferrer">Discussions ↗</a></div>
+      <small>中国 · 二〇二六 · 各项目许可与支持范围以对应仓库为准。</small>
+    </footer>
+  </div>
+
+  <dialog class="command" id="command-dialog" aria-labelledby="command-title">
+    <form method="dialog" class="command__surface">
+      <div class="command__search">
+        <label for="command-input" id="command-title">检索项目与页面</label>
+        <input id="command-input" type="search" role="combobox" autocomplete="off" placeholder="例如：历法、Agent、贡献" aria-controls="command-results" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false">
+        <button class="command__close" type="submit" value="close" aria-label="关闭检索">关闭</button>
+      </div>
+      <p class="command__status" id="command-status" aria-live="polite">六个项目 · 四个页面入口</p>
+      <!-- html-validate-disable-next prefer-native-element: searchable navigation results are links, not form choices -->
+      <div class="command__results" id="command-results" role="listbox" aria-label="检索结果"></div>
+      <div class="command__empty" id="command-empty" hidden>未找到匹配项。试试“历法”“Agent”或“贡献”。</div>
+      <div class="command__hints"><span>↑ ↓ 选择</span><span>Enter 打开</span><span>Esc 关闭</span></div>
+    </form>
+  </dialog>
+</body>
+</html>
