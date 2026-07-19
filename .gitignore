@@ -10,3 +10,10 @@ blob-report/
 # Local agent planning state; project-level skills in .agents remain versioned.
 .hermes/
 output/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

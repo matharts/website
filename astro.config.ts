@@ -6,9 +6,11 @@ import { siteDiscovery } from "./src/data/site-discovery.ts";
 export default defineConfig({
   site: siteDiscovery.origin,
   output: "static",
+
   build: {
     inlineStylesheets: "always"
   },
+
   integrations: [
     sitemap(),
     seoGraph({
@@ -22,6 +24,7 @@ export default defineConfig({
       validateInternalLinks: true
     })
   ],
+
   fonts: [
     {
       provider: fontProviders.local(),
