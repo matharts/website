@@ -1,0 +1,323 @@
+---
+import activeDevelopmentDiagram from '../assets/active-development.svg?raw';
+---
+
+<section class="building split" id="building" aria-labelledby="building-title" data-active-build-section>
+  <div class="split__lead building__lead">
+    <h2 id="building-title">仍在建设，<br />也持续公开。</h2>
+    <p>
+      MathArts 不是一份已经完成的成果清单。我们正在把分散的数术知识整理为可阅读、可测试、可复用的软件与资料；仓库中的讨论、变更和暂时空白，也是建设记录的一部分。
+    </p>
+
+    <dl class="building__ledger" aria-label="MathArts 当前建设方向">
+      <div>
+        <dt>规则工程</dt>
+        <dd>梳理领域概念、计算条件与规则边界，让实现可以被解释和追溯。</dd>
+      </div>
+      <div>
+        <dt>历法与数术</dt>
+        <dd>持续建设天文历法、紫微斗数等领域引擎，并用资料、推导和测试校验。</dd>
+      </div>
+      <div>
+        <dt>开发基础设施</dt>
+        <dd>完善核心标准库、Agent Skills、自动化工具与跨仓库协作能力。</dd>
+      </div>
+      <div>
+        <dt>开放治理</dt>
+        <dd>补充贡献路径、责任边界和公开记录，让协作长期可维护。</dd>
+      </div>
+    </dl>
+
+    <div class="building__actions">
+      <a href="https://github.com/matharts" target="_blank" rel="noreferrer">浏览组织仓库 ↗</a>
+    </div>
+  </div>
+
+  <figure class="building__visual">
+    <div class="building__diagram" data-building-diagram set:html={activeDevelopmentDiagram}></div>
+    <figcaption>从领域规则到软件实现，再回到公开验证；建设沿着同一条可追溯路径反复推进。</figcaption>
+  </figure>
+</section>
+
+<style>
+  .split {
+    display: grid;
+  }
+
+  .split__lead,
+  .building__visual {
+    min-width: 0;
+    padding-block: clamp(var(--space-2xl), 8vw, var(--space-3xl));
+    padding-inline: var(--safe-page-gutter-inline-start) var(--safe-page-gutter-inline-end);
+  }
+
+  .split__lead {
+    display: grid;
+    align-content: center;
+    gap: var(--space-xl);
+  }
+
+  .split__lead h2 {
+    min-width: 0;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-display-s);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    overflow-wrap: anywhere;
+  }
+
+  .split__lead > p {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: clamp(var(--text-base), calc(var(--text-base) + 0.28vw), var(--text-md));
+    line-height: 1.7;
+  }
+
+  .building {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  .building__lead {
+    align-content: center;
+  }
+
+  .building__ledger {
+    margin: 0;
+    display: grid;
+    border-block-start: var(--rule-thin) solid var(--color-rule);
+  }
+
+  .building__ledger > div {
+    padding-block: var(--space-lg);
+    display: grid;
+    gap: var(--space-xs);
+    border-block-end: var(--rule-thin) solid var(--color-rule);
+  }
+
+  .building__ledger dt {
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-weight: 900;
+  }
+
+  .building__ledger dd {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  .building__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-xl);
+  }
+
+  .building__actions a {
+    min-height: var(--target-min);
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-weight: 700;
+    text-underline-offset: var(--underline-offset);
+    white-space: nowrap;
+    transition: opacity var(--dur-short) var(--ease-out);
+  }
+
+  .building__visual {
+    margin: 0;
+    display: grid;
+    align-content: center;
+    gap: var(--space-lg);
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .building__diagram {
+    min-width: 0;
+  }
+
+  .building__diagram :global(svg) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .building__diagram :global(.development-diagram > g) {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .building__diagram[data-motion-ready="true"] :global(.development-diagram__orbit),
+  .building__diagram[data-motion-ready="true"] :global(.development-diagram__hub),
+  .building__diagram[data-motion-ready="true"] :global(.development-diagram__node),
+  .building__diagram[data-motion-ready="true"] :global(.development-diagram__connections) {
+    opacity: 0;
+    transform: translateY(var(--space-xs)) scale(0.985);
+  }
+
+  .building__diagram[data-motion-ready="true"][data-revealed="true"] :global(.development-diagram__orbit),
+  .building__diagram[data-motion-ready="true"][data-revealed="true"] :global(.development-diagram__hub),
+  .building__diagram[data-motion-ready="true"][data-revealed="true"] :global(.development-diagram__node),
+  .building__diagram[data-motion-ready="true"][data-revealed="true"] :global(.development-diagram__connections) {
+    animation: diagram-assemble var(--dur-long) var(--ease-out) forwards;
+    animation-delay: calc(var(--diagram-step, 0) * var(--dur-micro));
+  }
+
+  .building__diagram :global(.development-diagram__orbit) {
+    --diagram-step: 0;
+  }
+
+  .building__diagram :global(.development-diagram__connections),
+  .building__diagram :global(.development-diagram__node--rules) {
+    --diagram-step: 1;
+  }
+
+  .building__diagram :global(.development-diagram__hub),
+  .building__diagram :global(.development-diagram__node--calendar) {
+    --diagram-step: 2;
+  }
+
+  .building__diagram :global(.development-diagram__node--tools) {
+    --diagram-step: 3;
+  }
+
+  .building__diagram :global(.development-diagram__node--governance) {
+    --diagram-step: 4;
+  }
+
+  @keyframes diagram-assemble {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .building__diagram :global(.development-diagram__grid),
+  .building__diagram :global(.development-diagram__frame),
+  .building__diagram :global(.development-diagram__orbit),
+  .building__diagram :global(.development-diagram__hub),
+  .building__diagram :global(.development-diagram__node),
+  .building__diagram :global(.development-diagram__connections),
+  .building__diagram :global(.development-diagram__marks) {
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .building__diagram :global(.development-diagram__grid) {
+    stroke: var(--color-muted);
+    stroke-width: var(--rule-thin);
+    opacity: 0.3;
+  }
+
+  .building__diagram :global(.development-diagram__frame) {
+    stroke: var(--color-rule);
+    stroke-width: var(--rule-thin);
+  }
+
+  .building__diagram :global(.development-diagram__orbit) {
+    stroke: var(--color-paper-3);
+    stroke-width: var(--rule-thin);
+    stroke-dasharray: 7 9;
+  }
+
+  .building__diagram :global(.development-diagram__hub) {
+    stroke: var(--color-paper);
+    stroke-width: var(--rule-thick);
+  }
+
+  .building__diagram :global(.development-diagram__hub circle:last-child) {
+    fill: var(--color-paper);
+  }
+
+  .building__diagram :global(.development-diagram__node) {
+    stroke: var(--color-paper-3);
+    stroke-width: var(--rule-thin);
+  }
+
+  .building__diagram :global(.development-diagram__node--calendar),
+  .building__diagram :global(.development-diagram__node--tools) {
+    stroke: var(--color-paper);
+  }
+
+  .building__diagram :global(.development-diagram__connections) {
+    stroke: var(--color-rule);
+    stroke-width: var(--rule-thin);
+  }
+
+  .building__diagram :global(.development-diagram__connections circle) {
+    fill: var(--color-paper);
+    stroke: none;
+  }
+
+  .building__diagram :global(.development-diagram__marks) {
+    stroke: var(--color-muted);
+    stroke-width: var(--rule-thin);
+  }
+
+  .building__visual figcaption {
+    max-width: 45ch;
+    color: var(--color-rule);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .building__actions a:hover {
+      text-decoration: underline;
+      text-underline-offset: var(--underline-offset);
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .building__ledger > div {
+      grid-template-columns: minmax(8rem, 0.65fr) minmax(0, 1.35fr);
+      gap: var(--space-xl);
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .split {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .building__lead {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .building__visual {
+      grid-column: 1;
+      grid-row: 1;
+      padding-inline: var(--safe-panel-gutter-inline-start) var(--safe-panel-gutter-inline-end);
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-active-build-section]').forEach((section) => {
+    const diagram = section.querySelector<HTMLElement>('[data-building-diagram]');
+    if (!diagram) return;
+
+    const supportsMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+    const supportsViewportReveal = window.matchMedia('(min-width: 40rem)').matches;
+
+    if (!supportsMotion || !supportsViewportReveal) return;
+
+    diagram.dataset.motionReady = 'true';
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        diagram.dataset.revealed = 'true';
+        observer.disconnect();
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(diagram);
+  });
+</script>

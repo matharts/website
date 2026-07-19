@@ -1,0 +1,31 @@
+---
+import ActiveBuildSection from '../components/ActiveBuildSection.astro';
+import ClosingActionsSection from '../components/ClosingActionsSection.astro';
+import HeroSection from '../components/HeroSection.astro';
+import InteractiveSiteShell from '../components/InteractiveSiteShell.astro';
+import ManifestoSection from '../components/ManifestoSection.astro';
+import PrinciplesSection from '../components/PrinciplesSection.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WorkSection from '../components/WorkSection.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
+---
+
+<SiteLayout>
+  <InteractiveSiteShell>
+    <main id="main" tabindex="-1">
+      <HeroSection />
+
+      <ManifestoSection />
+
+      <WorkSection />
+
+      <ActiveBuildSection />
+
+      <PrinciplesSection />
+
+      <ClosingActionsSection />
+    </main>
+
+    <SiteFooter joined />
+  </InteractiveSiteShell>
+</SiteLayout>

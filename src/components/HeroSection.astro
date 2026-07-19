@@ -1,0 +1,285 @@
+---
+import { Image } from 'astro:assets';
+import avatar from '../assets/avatar.png';
+import SpatialBackdrop from './SpatialBackdrop.astro';
+
+interface Props {
+  variant?: 'home' | 'not-found';
+}
+
+const { variant = 'home' } = Astro.props;
+---
+
+{variant === 'not-found' ? (
+  <section class="hero" aria-labelledby="not-found-title">
+    <div class="hero__statement">
+      <div class="hero__mark"><span>MathArts · 404</span></div>
+      <h1 id="not-found-title">页面未找到。</h1>
+      <p>请求的页面不存在、已移动或链接有误。你可以返回首页，或继续浏览 MathArts 的开放源码项目。</p>
+      <nav class="hero__actions" aria-label="错误页面导航">
+        <a href="/">返回首页 ←</a>
+        <a href="/#work">浏览项目 ↓</a>
+        <a href="https://github.com/matharts" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </nav>
+    </div>
+
+    <div class="hero__proof" role="group" aria-label="页面状态">
+      <p class="hero__monogram" aria-hidden="true">迷<br />路</p>
+      <dl>
+        <div><dt>状态代码</dt><dd>404 · Not Found</dd></div>
+        <div><dt>可能原因</dt><dd>地址有误、页面移动或内容已下线</dd></div>
+        <div><dt>建议操作</dt><dd>检查地址，或从首页重新开始</dd></div>
+      </dl>
+      <p class="hero__chain">MATHARTS.CN / RETURN HOME</p>
+    </div>
+  </section>
+) : (
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__statement reveal" style="--i: 0">
+      <SpatialBackdrop variant="astronomy" class="hero__spatial" />
+      <div class="hero__mark"><Image src={avatar} width={52} height={52} densities={[1.5, 2]} format="webp" alt="" priority /><span>MathArts · Open Source</span></div>
+      <h1 id="hero-title"><span class="hero__line">用象数描述万物，</span><br /><span class="hero__line">用术法计算万物。</span></h1>
+      <p>MathArts 以现代数学、计算机科学与软件工程，建设开放、可追溯、可验证的中国数术数字基础设施。</p>
+      <div class="hero__actions">
+        <a href="#about">了解 MathArts ↓</a>
+        <a href="https://github.com/matharts" target="_blank" rel="noreferrer">浏览公开仓库 ↗</a>
+      </div>
+    </div>
+    <div class="hero__proof reveal" style="--i: 1" role="group" aria-label="MathArts 工作范围">
+      <p class="hero__monogram" aria-hidden="true">数<br />术</p>
+      <dl>
+        <div><dt>组织定位</dt><dd>中国数术数字基础设施</dd></div>
+        <div><dt>公开成果</dt><dd>六项开放源码项目</dd></div>
+        <div><dt>参与方式</dt><dd>仓库问题与组织讨论</dd></div>
+      </dl>
+      <p class="hero__chain">MATHARTS.CN / GITHUB</p>
+    </div>
+  </section>
+)}
+
+<style>
+  .hero {
+    display: grid;
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  .hero__statement,
+  .hero__proof {
+    min-width: 0;
+    padding-block: var(--space-xl);
+    padding-inline: var(--safe-page-gutter-inline-start) var(--safe-page-gutter-inline-end);
+  }
+
+  .hero__statement {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--space-xl);
+  }
+
+  .hero__statement > :not(.hero__spatial) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero__mark {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .hero__mark img {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .hero h1 {
+    min-width: 0;
+    max-width: 9em;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-display);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    overflow-wrap: anywhere;
+  }
+
+  .hero__line {
+    white-space: nowrap;
+  }
+
+  .hero__statement > p {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: clamp(var(--text-base), calc(var(--text-base) + 0.28vw), var(--text-md));
+    line-height: 1.7;
+  }
+
+  .hero__actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-xl);
+  }
+
+  .hero__actions a {
+    min-height: var(--target-min);
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: var(--rule-thin);
+    text-underline-offset: var(--underline-offset);
+    white-space: nowrap;
+    transition: opacity var(--dur-short) var(--ease-out);
+  }
+
+  .hero__proof {
+    display: grid;
+    align-content: start;
+    gap: var(--space-xl);
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .hero__monogram {
+    margin: 0;
+    justify-self: end;
+    font-family: var(--font-display);
+    font-size: var(--text-display-s);
+    font-weight: 900;
+    line-height: 0.9;
+    text-align: end;
+  }
+
+  .hero__proof dl {
+    margin: 0;
+    display: grid;
+    border-block-start: var(--rule-thin) solid var(--color-muted);
+  }
+
+  .hero__proof dl > div {
+    padding-block: var(--space-lg);
+    display: grid;
+    gap: var(--space-xs);
+    border-block-end: var(--rule-thin) solid var(--color-muted);
+  }
+
+  .hero__proof dt {
+    color: var(--color-rule);
+    font-size: var(--text-sm);
+  }
+
+  .hero__proof dd {
+    max-width: 32ch;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-md);
+    font-weight: 700;
+  }
+
+  .hero__chain {
+    margin: 0;
+    font-size: var(--text-sm);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .reveal {
+    transform: translateY(var(--space-sm));
+    animation: reveal var(--dur-long) var(--ease-out) forwards;
+    animation-delay: calc(var(--i, 0) * var(--dur-micro));
+  }
+
+  @keyframes reveal {
+    to {
+      transform: none;
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .hero__actions a:hover {
+      opacity: 0.68;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .hero {
+      min-height: calc(100svh - var(--safe-mobile-header-height));
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    }
+
+    .hero__statement,
+    .hero__proof {
+      min-height: calc(100svh - var(--safe-mobile-header-height));
+      padding-block: var(--space-2xl) var(--space-3xl);
+    }
+
+    .hero__statement {
+      justify-content: space-between;
+      gap: var(--space-2xl);
+    }
+
+    .hero :global(.hero__spatial) {
+      display: block;
+      inset-block-start: 16%;
+      inset-inline-end: calc(var(--space-xl) * -1);
+      width: min(29rem, 44vw);
+      aspect-ratio: 1;
+      opacity: 0.52;
+    }
+
+    .hero__proof {
+      align-content: space-between;
+      gap: var(--space-2xl);
+      padding-inline: var(--safe-panel-gutter-inline-start) var(--safe-panel-gutter-inline-end);
+    }
+  }
+
+  @media (min-width: 48rem) and (max-width: 71.999rem) {
+    .hero h1 {
+      font-size: clamp(var(--text-2xl), 6vw, var(--text-3xl));
+    }
+
+    .hero :global(.hero__spatial) {
+      inset-block-start: 14%;
+      inset-inline-end: calc(var(--space-2xl) * -1);
+      width: min(25rem, 42vw);
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .hero {
+      min-height: 100svh;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    }
+
+    .hero__statement,
+    .hero__proof {
+      min-height: 100svh;
+    }
+
+    .hero__statement,
+    .hero__proof {
+      padding-block-start: var(--space-2xl);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      transform: none;
+      animation: none;
+    }
+  }
+</style>

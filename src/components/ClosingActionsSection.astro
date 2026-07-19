@@ -1,0 +1,177 @@
+<section
+  class="participate closing-actions"
+  id="participate"
+  aria-labelledby="participate-title"
+>
+  <header class="closing-actions__intro">
+    <h2 id="participate-title">找到正确的<br />参与入口。</h2>
+    <p class="closing-actions__guidance">
+      可复现的软件缺陷和明确的改进建议应提交到目标仓库；开放问题、方向讨论或跨仓库想法进入 MathArts Discussions。修改前请先阅读目标仓库的 README 与贡献指南。
+    </p>
+  </header>
+  <nav class="closing-actions__routes" aria-label="参与 MathArts">
+    <div>
+      <a href="https://github.com/matharts" target="_blank" rel="noreferrer">查看全部仓库 ↗</a>
+      <p class="closing-actions__description">浏览 MathArts 在 GitHub 上的公开项目</p>
+    </div>
+    <div>
+      <a href="#work">浏览项目 ↑</a>
+      <p class="closing-actions__description">了解六项公开工作的目标</p>
+    </div>
+    <div>
+      <a
+        href="https://github.com/orgs/matharts/discussions"
+        target="_blank"
+        rel="noreferrer"
+      >参与讨论 ↗</a>
+      <p class="closing-actions__description">提出问题、建议与研究线索</p>
+    </div>
+    <div>
+      <a
+        href="https://github.com/matharts/.github/blob/main/CONTRIBUTING.md"
+        target="_blank"
+        rel="noreferrer"
+      >阅读贡献方式 ↗</a>
+      <p class="closing-actions__description">参与文档、测试与代码实现</p>
+    </div>
+  </nav>
+</section>
+
+<style>
+  .closing-actions {
+    padding-block-start: clamp(var(--space-2xl), 8vw, var(--space-3xl));
+    background: var(--color-paper-2);
+    color: var(--color-ink);
+  }
+
+  .closing-actions h2 {
+    min-width: 0;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-display-s);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    overflow-wrap: anywhere;
+  }
+
+  .closing-actions__intro {
+    padding-inline: var(--safe-page-gutter-inline-start) var(--safe-page-gutter-inline-end);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .closing-actions__guidance {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: clamp(var(--text-base), calc(var(--text-base) + 0.28vw), var(--text-md));
+    line-height: 1.7;
+  }
+
+  .closing-actions__routes {
+    margin-block-start: var(--space-2xl);
+    display: grid;
+    border-block: var(--rule-thick) solid var(--color-ink);
+  }
+
+  .closing-actions__routes > div {
+    min-width: 0;
+    min-height: 7rem;
+    padding-block: var(--space-lg);
+    padding-inline: var(--safe-page-gutter-inline-start) var(--safe-page-gutter-inline-end);
+    display: grid;
+    align-content: space-between;
+    gap: var(--space-lg);
+    border-block-end: var(--rule-thin) solid var(--color-rule);
+    transition: background-color var(--dur-short) var(--ease-out);
+  }
+
+  .closing-actions__routes > div:last-child {
+    border-block-end: 0;
+  }
+
+  .closing-actions__routes a {
+    width: fit-content;
+    min-height: var(--target-min);
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .closing-actions__description {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
+  .closing-actions__routes > div:has(a:focus-visible) {
+    background: var(--color-paper-3);
+  }
+
+  .closing-actions__routes > div:has(a:active) {
+    background: var(--color-paper);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .closing-actions__routes > div:has(a:hover) {
+      background: var(--color-paper-3);
+    }
+
+    .closing-actions__routes a:hover {
+      text-decoration: underline;
+      text-underline-offset: var(--underline-offset);
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .closing-actions__routes {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .closing-actions__routes > div:nth-child(odd) {
+      border-inline-end: var(--rule-thin) solid var(--color-rule);
+    }
+
+    .closing-actions__routes > div:nth-last-child(-n + 2) {
+      border-block-end: 0;
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .closing-actions {
+      padding-block-start: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      border-block: var(--rule-thick) solid var(--color-ink);
+    }
+
+    .closing-actions__intro {
+      padding-block: var(--space-3xl);
+      justify-content: space-between;
+    }
+
+    .closing-actions__guidance {
+      max-width: 31rem;
+    }
+
+    .closing-actions__routes {
+      margin-block-start: 0;
+      border-inline-start: var(--rule-thin) solid var(--color-rule);
+      border-block: 0;
+    }
+
+    .closing-actions__routes > div {
+      min-height: 11rem;
+      padding-inline: var(--space-xl);
+    }
+  }
+</style>

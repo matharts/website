@@ -1,0 +1,316 @@
+<section class="about manifesto" id="about" aria-labelledby="about-title">
+  <div class="manifesto__body">
+    <h2 id="about-title">MathArts<br />在做什么？</h2>
+    <div class="manifesto__copy">
+      <p>MathArts 围绕中国数术建设开放源码生态。目前公开项目覆盖核心基础设施、天文历法与紫微斗数领域引擎、可复用 Agent Skills，以及组织协作所需的治理文档和自动化工具。</p>
+      <p>这些项目不是彼此孤立的工具。它们共同把资料依据、领域概念、计算规则、软件接口与协作记录连接起来，让研究问题可以落实为软件实现，也让实现结果能够回到资料与测试中接受复查。</p>
+    </div>
+  </div>
+  <div class="manifesto__aside">
+    <p class="manifesto__statement">
+      <span>为中国数术建立</span>
+      <span>可复用、可验证、可长期维护的</span>
+      <strong>数字底座。</strong>
+    </p>
+    <p class="manifesto__scope">基础设施 · 领域引擎 · 开放工具</p>
+    <dl class="manifesto__criteria" aria-label="数字底座的三个要求">
+      <div>
+        <dt>可复用</dt>
+        <dd>把共通概念与能力沉淀为清晰接口，供不同项目组合与扩展。</dd>
+      </div>
+      <div>
+        <dt>可验证</dt>
+        <dd>让资料依据、计算过程与测试结果相互对应，使每一步都能够复查。</dd>
+      </div>
+      <div>
+        <dt>可长期维护</dt>
+        <dd>保持版本、责任边界和协作记录明确，让项目能够持续演进。</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<style>
+  .manifesto {
+    padding-block: clamp(var(--space-2xl), 8vw, var(--space-3xl));
+    padding-inline: var(--safe-page-gutter-inline-start) var(--safe-page-gutter-inline-end);
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  .manifesto__body {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .manifesto__copy {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .manifesto h2 {
+    min-width: 0;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-display-s);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    overflow-wrap: anywhere;
+  }
+
+  .manifesto__copy > p {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: clamp(var(--text-base), calc(var(--text-base) + 0.28vw), var(--text-md));
+    line-height: 1.7;
+    text-wrap: pretty;
+  }
+
+  .manifesto__copy > p:first-child {
+    color: var(--color-ink);
+    line-height: 1.68;
+  }
+
+  .manifesto__copy > p:last-child {
+    max-width: 60ch;
+    color: var(--color-muted);
+    font-size: var(--text-base);
+    line-height: 1.65;
+  }
+
+  .manifesto__aside {
+    margin-block-start: var(--space-xl);
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    padding: clamp(var(--space-lg), 8vw, var(--space-2xl));
+    display: grid;
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .manifesto__aside::before,
+  .manifesto__aside::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset-block-start: 52%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+
+  .manifesto__aside::before {
+    inset-inline-end: -80%;
+    width: min(22rem, 90vw);
+    background: var(--color-paper);
+    opacity: 0.1;
+  }
+
+  .manifesto__aside::after {
+    inset-inline-end: -92%;
+    width: min(22rem, 90vw);
+    background: var(--color-ink);
+  }
+
+  .manifesto__statement {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    max-width: 50rem;
+    margin: 0;
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: var(--space-md);
+    font-family: var(--font-body);
+    font-style: normal;
+    line-height: 1.35;
+  }
+
+  .manifesto__statement > span {
+    min-width: 0;
+    max-width: none;
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-xl), 7vw, var(--text-2xl));
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    overflow-wrap: anywhere;
+  }
+
+  .manifesto__statement > span:nth-child(2) {
+    justify-self: start;
+    color: var(--color-paper-3);
+    font-family: var(--font-body);
+    font-size: clamp(var(--text-base), 4.5vw, var(--text-lg));
+    font-weight: 500;
+    letter-spacing: 0;
+    text-align: start;
+  }
+
+  .manifesto__statement > strong {
+    min-width: 0;
+    justify-self: start;
+    font-family: var(--font-display);
+    font-size: clamp(var(--text-3xl), 13vw, calc(var(--text-display-s) + var(--text-xl)));
+    font-style: normal;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+    overflow-wrap: anywhere;
+    white-space: nowrap;
+  }
+
+  .manifesto__scope {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding-block-start: var(--space-xl);
+    color: var(--color-paper-3);
+    font-size: var(--text-sm);
+    letter-spacing: 0.12em;
+  }
+
+  .manifesto__criteria {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding-block-start: var(--space-xl);
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .manifesto__criteria > div {
+    min-width: 0;
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .manifesto__criteria dt {
+    color: var(--color-paper);
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  .manifesto__criteria dd {
+    max-width: 32rem;
+    margin: 0;
+    color: var(--color-paper-3);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  @media (min-width: 40rem) {
+    .manifesto__aside::before {
+      inset-inline-end: -12%;
+      width: min(22rem, 46vw);
+    }
+
+    .manifesto__aside::after {
+      inset-inline-end: -24%;
+      width: min(22rem, 46vw);
+    }
+
+    .manifesto__criteria {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .manifesto {
+      padding-block: var(--space-2xl);
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--space-xl);
+      row-gap: var(--space-xl);
+    }
+
+    .manifesto__body {
+      grid-column: 1 / -1;
+      grid-template-columns: subgrid;
+      align-items: start;
+      column-gap: var(--space-xl);
+      row-gap: 0;
+    }
+
+    .manifesto__body h2 {
+      grid-column: 1 / span 5;
+    }
+
+    .manifesto__copy {
+      grid-column: 7 / -1;
+      justify-self: stretch;
+    }
+
+    .manifesto__aside {
+      margin-block-start: 0;
+      grid-column: 1 / -1;
+      min-height: clamp(22rem, 33vw, 29rem);
+      padding: clamp(var(--space-xl), 5vw, var(--space-2xl));
+      grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
+      grid-template-rows: minmax(0, 1fr) auto;
+      align-content: stretch;
+      column-gap: clamp(var(--space-xl), 5vw, var(--space-2xl));
+    }
+
+    .manifesto__aside::before {
+      inset-inline-end: -10%;
+      width: clamp(20rem, 38vw, 34rem);
+      opacity: 0.06;
+    }
+
+    .manifesto__aside::after {
+      inset-inline-end: -17%;
+      width: clamp(20rem, 38vw, 34rem);
+    }
+
+    .manifesto__statement {
+      width: auto;
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+      gap: var(--space-md);
+    }
+
+    .manifesto__statement > span:first-child {
+      font-size: clamp(var(--text-xl), 2.7vw, var(--text-3xl));
+    }
+
+    .manifesto__statement > span:nth-child(2) {
+      justify-self: start;
+      text-align: start;
+      white-space: nowrap;
+    }
+
+    .manifesto__statement > strong {
+      justify-self: start;
+      font-size: clamp(var(--text-display-s), 8.5vw, calc(var(--text-display) + var(--text-xl)));
+    }
+
+    .manifesto__scope {
+      position: relative;
+      z-index: 1;
+      grid-column: 1;
+      grid-row: 2;
+      align-self: end;
+      max-width: none;
+      padding-block-start: 0;
+      text-align: start;
+    }
+
+    .manifesto__criteria {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: center;
+      padding-block-start: 0;
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

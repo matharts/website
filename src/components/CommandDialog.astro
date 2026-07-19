@@ -1,0 +1,471 @@
+---
+import { siteContent } from '../data/site';
+---
+
+<dialog class="command" id="command-dialog" aria-labelledby="command-title" data-project-search-dialog>
+  <form method="dialog" class="command__surface">
+    <div class="command__search">
+      <label for="command-input" id="command-title">检索项目与页面</label>
+      <input id="command-input" type="search" role="combobox" autocomplete="off" placeholder="例如：历法、Agent、贡献" aria-controls="command-results" aria-describedby="command-status" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" data-project-search-input>
+      <button class="command__close" type="submit" value="close" aria-label="关闭检索">关闭</button>
+    </div>
+    <p class="command__status" id="command-status" role="status" aria-live="polite" data-project-search-status>{siteContent.search.statusText}</p>
+    <div class="command__results" id="command-results" role="listbox" aria-label="检索结果" data-project-search-results></div>
+    <div class="command__empty" hidden data-project-search-empty>未找到匹配项。试试“历法”“Agent”或“贡献”。</div>
+    <div class="command__hints"><span>↑ ↓ 选择</span><span>Enter 打开</span><span>Esc 关闭</span></div>
+  </form>
+</dialog>
+
+<style>
+  :global(body:has(.command[open])) {
+    overflow: clip;
+  }
+
+  .command {
+    position: fixed;
+    inset-block: var(--safe-command-inset-block-start) var(--safe-command-inset-block-end);
+    inset-inline: var(--safe-command-inset-inline-start) var(--safe-command-inset-inline-end);
+    width: min(
+      calc(100% - var(--safe-command-inset-inline-start) - var(--safe-command-inset-inline-end)),
+      42rem
+    );
+    height: fit-content;
+    max-height: min(
+      calc(100svh - var(--safe-command-inset-block-start) - var(--safe-command-inset-block-end)),
+      42rem
+    );
+    margin: auto;
+    padding: 0;
+    border: var(--rule-thick) solid var(--color-paper);
+    border-radius: 0;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    z-index: var(--z-modal);
+  }
+
+  .command::backdrop {
+    background: var(--color-scrim);
+  }
+
+  .command__surface {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr) auto auto;
+    max-height: inherit;
+  }
+
+  .command__search {
+    padding: var(--space-lg);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-sm) var(--space-md);
+    border-block-end: var(--rule-thin) solid var(--color-muted);
+  }
+
+  .command__search label {
+    grid-column: 1 / -1;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+  }
+
+  .command__search input {
+    min-width: 0;
+    min-height: var(--target-min);
+    padding-inline: var(--space-md);
+    border: var(--rule-thin) solid var(--color-muted);
+    outline: var(--rule-thick) solid transparent;
+    outline-offset: var(--rule-thin);
+    background: var(--color-ink-2);
+    color: var(--color-paper);
+  }
+
+  .command__search input::placeholder {
+    color: var(--color-rule);
+  }
+
+  .command__search input:focus-visible {
+    outline-color: var(--color-focus);
+  }
+
+  .command__search input[aria-invalid='true'] {
+    border-color: var(--color-error);
+  }
+
+  .command__search input:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background: var(--color-ink);
+  }
+
+  .command__search input[data-state='success'] {
+    border-color: var(--color-success);
+  }
+
+  .command__search input[data-state='loading'] {
+    cursor: wait;
+  }
+
+  .command__close {
+    min-width: var(--command-close-width);
+    min-height: var(--target-min);
+    border: var(--rule-thin) solid var(--color-paper);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    cursor: pointer;
+  }
+
+  .command__status {
+    margin: 0;
+    padding: var(--space-sm) var(--space-lg);
+    border-block-end: var(--rule-thin) solid var(--color-muted);
+    color: var(--color-rule);
+    font-size: var(--text-sm);
+  }
+
+  .command__results {
+    position: relative;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: var(--space-sm);
+    display: grid;
+  }
+
+  .command__results :global(.command__selection) {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: var(--space-sm);
+    height: var(--command-selection-height, var(--target-list));
+    background: var(--color-ink-2);
+    pointer-events: none;
+    opacity: 1;
+    transform: translateY(var(--command-selection-y, 0));
+  }
+
+  .command__results :global(.command__selection[data-ready='true']) {
+    transition: transform var(--dur-micro) var(--ease-out);
+  }
+
+  .command__results :global(.command__item) {
+    position: relative;
+    z-index: 1;
+    min-height: var(--target-list);
+    padding: var(--space-sm) var(--space-md);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-2xs);
+    border-block-end: var(--rule-thin) solid var(--color-muted);
+    color: var(--color-paper);
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+  }
+
+  .command__results :global(.command__item strong) {
+    min-width: 0;
+    font-family: var(--font-display);
+    overflow-wrap: anywhere;
+  }
+
+  .command__results :global(.command__item small) {
+    color: var(--color-rule);
+  }
+
+  .command__results :global(.command__item[data-active='true']),
+  .command__results :global(.command__item[aria-selected='true']) {
+    background: transparent;
+  }
+
+  .command__empty {
+    padding: var(--space-xl);
+    color: var(--color-rule);
+  }
+
+  .command__hints {
+    padding: var(--space-sm) var(--space-lg);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-lg);
+    border-block-start: var(--rule-thin) solid var(--color-muted);
+    color: var(--color-rule);
+    font-size: var(--text-xs);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .command__results :global(.command__item:hover) {
+      background: var(--color-ink-2);
+    }
+
+    .command__search input:hover {
+      background: var(--color-accent);
+      color: var(--color-accent-ink);
+    }
+
+    .command__close:hover {
+      background: var(--color-paper-2);
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .command__results :global(.command__item) {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-md);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .command__results :global(.command__selection) {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  import { siteContent } from '../data/site';
+
+  type SearchEntry = (typeof siteContent.search.entries)[number];
+  type ProjectSearchOpenEvent = CustomEvent<{ trigger?: HTMLElement }>;
+
+  interface ProjectSearchElements {
+    background: HTMLElement;
+    dialog: HTMLDialogElement;
+    empty: HTMLElement;
+    input: HTMLInputElement;
+    results: HTMLElement;
+    shell: HTMLElement;
+    status: HTMLElement;
+  }
+
+  function requireUniqueElement<T extends Element>(
+    root: ParentNode,
+    selector: string,
+    description: string
+  ): T {
+    const elements = [...root.querySelectorAll<T>(selector)];
+
+    if (elements.length !== 1) {
+      throw new Error(
+        `[CommandDialog] Expected exactly one ${description} (${selector}), found ${elements.length}.`
+      );
+    }
+
+    return elements[0]!;
+  }
+
+  function readProjectSearchElements(dialog: HTMLDialogElement): ProjectSearchElements {
+    const shell = dialog.closest<HTMLElement>('[data-interactive-site-shell]');
+    if (!shell) throw new Error('[CommandDialog] Missing interactive site shell.');
+
+    return {
+      background: requireUniqueElement<HTMLElement>(
+        shell,
+        '[data-site-shell-content]',
+        'site shell content'
+      ),
+      dialog,
+      empty: requireUniqueElement<HTMLElement>(
+        dialog,
+        '[data-project-search-empty]',
+        'project search empty state'
+      ),
+      input: requireUniqueElement<HTMLInputElement>(
+        dialog,
+        '[data-project-search-input]',
+        'project search input'
+      ),
+      results: requireUniqueElement<HTMLElement>(
+        dialog,
+        '[data-project-search-results]',
+        'project search results'
+      ),
+      shell,
+      status: requireUniqueElement<HTMLElement>(
+        dialog,
+        '[data-project-search-status]',
+        'project search status'
+      )
+    };
+  }
+
+  function initializeProjectSearch({
+    background,
+    dialog,
+    empty,
+    input,
+    results,
+    shell,
+    status
+  }: ProjectSearchElements): void {
+    const entries = siteContent.search.entries;
+    const defaultStatus = siteContent.search.statusText;
+    let visible: readonly SearchEntry[] = entries;
+    let activeIndex = 0;
+    let restoreTarget: HTMLElement | null = null;
+    const selectionIndicator = document.createElement('span');
+    selectionIndicator.className = 'command__selection';
+    selectionIndicator.setAttribute('aria-hidden', 'true');
+
+    function syncSelection(): void {
+      const items = [...results.querySelectorAll<HTMLElement>('.command__item')];
+
+      items.forEach((item, index) => {
+        const selected = index === activeIndex;
+        item.dataset.active = String(selected);
+        item.setAttribute('aria-selected', String(selected));
+      });
+
+      const activeItem = items[activeIndex];
+      if (activeItem) {
+        input.setAttribute('aria-activedescendant', activeItem.id);
+        activeItem.scrollIntoView({ block: 'nearest' });
+        selectionIndicator.hidden = false;
+        selectionIndicator.style.setProperty(
+          '--command-selection-height',
+          `${activeItem.offsetHeight}px`
+        );
+        selectionIndicator.style.setProperty('--command-selection-y', `${activeItem.offsetTop}px`);
+      } else {
+        input.removeAttribute('aria-activedescendant');
+        selectionIndicator.hidden = true;
+      }
+    }
+
+    function activateEntry(entry: SearchEntry): void {
+      dialog.close();
+      if (entry.url.startsWith('http')) {
+        window.open(entry.url, '_blank', 'noopener,noreferrer');
+      } else {
+        window.location.assign(entry.url);
+      }
+    }
+
+    function render(query = ''): void {
+      const needle = query.trim().toLocaleLowerCase('zh-CN');
+      visible = entries.filter((entry) =>
+        `${entry.title} ${entry.detail} ${entry.keys}`.toLocaleLowerCase('zh-CN').includes(needle)
+      );
+      activeIndex = 0;
+      selectionIndicator.dataset.ready = 'false';
+      results.replaceChildren(selectionIndicator);
+
+      visible.forEach((entry, index) => {
+        const opensNewTab = entry.url.startsWith('http');
+        const option = document.createElement('div');
+        option.className = 'command__item';
+        option.id = `project-search-option-${entries.indexOf(entry)}`;
+        option.tabIndex = -1;
+        option.setAttribute('role', 'option');
+        if (opensNewTab) {
+          option.setAttribute('aria-label', `${entry.title}，${entry.detail}，新标签页打开`);
+        }
+
+        const title = document.createElement('strong');
+        title.textContent = `${entry.title}${opensNewTab ? ' ↗' : ''}`;
+        const detail = document.createElement('small');
+        detail.textContent = entry.detail;
+        option.append(title, detail);
+        option.addEventListener('pointerdown', (event) => event.preventDefault());
+        option.addEventListener('pointerenter', () => {
+          activeIndex = index;
+          syncSelection();
+        });
+        option.addEventListener('click', () => activateEntry(entry));
+        results.append(option);
+      });
+
+      results.hidden = visible.length === 0;
+      empty.hidden = visible.length !== 0;
+      status.textContent = needle
+        ? visible.length
+          ? `${visible.length} 项匹配`
+          : '零项匹配'
+        : defaultStatus;
+      syncSelection();
+      requestAnimationFrame(() => {
+        selectionIndicator.dataset.ready = 'true';
+      });
+    }
+
+    function openDialog(trigger?: HTMLElement | null): void {
+      const parentMenu = trigger?.closest('details');
+      restoreTarget =
+        parentMenu?.querySelector<HTMLElement>('summary') ??
+        trigger ??
+        (document.activeElement as HTMLElement | null);
+      parentMenu?.removeAttribute('open');
+
+      if (!dialog.open) dialog.showModal();
+      input.setAttribute('aria-expanded', 'true');
+      background.inert = true;
+      render(input.value);
+      requestAnimationFrame(() => input.focus({ preventScroll: true }));
+    }
+
+    shell.addEventListener('matharts:project-search-open', (event) => {
+      const { detail } = event as ProjectSearchOpenEvent;
+      const eventTarget = event.target instanceof HTMLElement ? event.target : null;
+      openDialog(detail?.trigger ?? eventTarget);
+    });
+
+    input.addEventListener('input', () => render(input.value));
+
+    document.addEventListener('keydown', (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLocaleLowerCase() === 'k') {
+        event.preventDefault();
+        if (dialog.open) {
+          dialog.close();
+        } else {
+          openDialog(document.activeElement instanceof HTMLElement ? document.activeElement : null);
+        }
+        return;
+      }
+      if (event.key === 'Escape' && dialog.open) {
+        event.preventDefault();
+        dialog.close();
+        return;
+      }
+      if (!dialog.open || document.activeElement !== input) return;
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        const entry = visible[activeIndex];
+        if (entry) activateEntry(entry);
+        return;
+      }
+      if (visible.length === 0) return;
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        activeIndex = (activeIndex + 1) % visible.length;
+        syncSelection();
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        activeIndex = (activeIndex - 1 + visible.length) % visible.length;
+        syncSelection();
+      }
+    });
+
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      dialog.close();
+    });
+
+    dialog.addEventListener('close', () => {
+      input.setAttribute('aria-expanded', 'false');
+      background.inert = false;
+      input.value = '';
+      render();
+      if (restoreTarget?.isConnected) restoreTarget.focus({ preventScroll: true });
+    });
+
+    render();
+  }
+
+  const dialog = document.querySelector<HTMLDialogElement>('[data-project-search-dialog]');
+  if (!dialog) throw new Error('[CommandDialog] Missing project search dialog.');
+  initializeProjectSearch(readProjectSearchElements(dialog));
+</script>

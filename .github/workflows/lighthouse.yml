@@ -1,0 +1,51 @@
+name: Lighthouse
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lighthouse-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Install pinned toolchain
+        uses: jdx/mise-action@dad1bfd3df957f44999b559dd69dc1671cb4e9ea # v4.2.1
+        with:
+          install: true
+          cache: true
+
+      - name: Install dependencies from lockfile
+        run: mise exec -- pnpm install --frozen-lockfile
+
+      - name: Install stable Chrome for Testing
+        id: chrome
+        uses: browser-actions/setup-chrome@73954683cc80eced513145a42b668b9b91f753c3 # v2.1.2
+        with:
+          chrome-version: stable
+
+      - name: Run Lighthouse quality gate
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: mise exec -- pnpm lighthouse:check
+
+      - name: Upload Lighthouse reports
+        if: ${{ always() }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: lighthouse-reports-${{ github.run_attempt }}
+          path: output/lighthouse/
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,0 +1,103 @@
+/* Hallmark · macrostructure: Ecosystem Index · H2 knobs: surfaces=annotated-ink-slab/ledger/diagram/matrix/decision-matrix, density=progressive, divider=mixed-rules · pre-emit critique: P5 H5 E5 S5 R5 V5
+ * theme: custom · vibe: "技术 学术 神秘 黑白 东方" · paper: oklch(98% 0.006 250) · accent: oklch(31% 0.025 250)
+ * display: Noto Serif SC · body: IBM Plex Sans + Noto Sans SC · axes: light / roman-serif / neutral
+ * genre: editorial · tone: technical-scholarly-mysterious · nav: N3 · footer: Ft1 · enrichment: E6 Tier-A CSS 3D spatial fields · section-craft: Tier-B SVG · studied: no
+ * contrast: pass (40–41) · nav: N3 · footer: Ft1 · slop: pass (42–45) · honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive: pass (49) · icons: pass (30) · mobile: pass (34, 49, 50–57)
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+
+body p,
+body dd,
+body small {
+  text-wrap: pretty;
+}
+
+body h1,
+body h2,
+body h3 {
+  text-wrap: balance;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: var(--rule-thick) solid var(--color-focus);
+  outline-offset: var(--space-2xs);
+}
+
+button:disabled,
+a[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+button:active,
+a:active {
+  transform: translateY(var(--space-3xs));
+}
+
+@media (pointer: coarse) {
+  a,
+  button,
+  summary {
+    min-height: var(--target-min);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 150ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 150ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

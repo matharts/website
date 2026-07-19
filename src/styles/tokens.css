@@ -1,0 +1,83 @@
+/* Hallmark · tokens: custom · vibe: technical scholarly mysterious monochrome eastern */
+:root {
+  --color-paper: oklch(98% 0.006 250);
+  --color-paper-2: oklch(94% 0.008 250);
+  --color-paper-3: oklch(89% 0.01 250);
+  --color-ink: oklch(15.5% 0.012 250);
+  --color-ink-2: oklch(27% 0.012 250);
+  --color-muted: oklch(43% 0.01 250);
+  --color-rule: oklch(72% 0.01 250);
+  --color-accent: oklch(31% 0.025 250);
+  --color-accent-ink: oklch(98% 0.006 250);
+  --color-focus: oklch(49% 0.16 250);
+  --color-error: oklch(46% 0.18 25);
+  --color-success: oklch(39% 0.105 145);
+  --color-scrim: oklch(12% 0.012 250 / 0.7);
+
+  --font-display: var(--font-noto-serif-sc), serif;
+  --font-body: var(--font-ibm-plex-sans), var(--font-noto-sans-sc), sans-serif;
+  --font-wordmark: var(--font-noto-serif-sc), serif;
+
+  --space-3xs: 0.125rem;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.5625rem;
+  --text-xl: 1.953rem;
+  --text-2xl: 2.441rem;
+  --text-3xl: 3.052rem;
+  --text-display-s: clamp(2.5rem, 6vw, 4rem);
+  --text-display: clamp(2.125rem, 10vw + 0.125rem, 4.1rem);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+  --dur-spatial: 4s;
+
+  --rule-thin: 1px;
+  --rule-thick: 2px;
+  --underline-offset: 2px;
+  --target-min: 2.75rem;
+  --target-comfortable: 3rem;
+  --target-list: 3.5rem;
+  --command-close-width: 4.5rem;
+  --mobile-header-height: 4.5rem;
+  --rail-width: 4.5rem;
+  --page-gutter: clamp(1rem, 4vw, 4rem);
+  --safe-area-inset-block-start: env(safe-area-inset-top, 0px);
+  --safe-area-inset-inline-end: env(safe-area-inset-right, 0px);
+  --safe-area-inset-block-end: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-inline-start: env(safe-area-inset-left, 0px);
+  --safe-page-gutter-inline-start: max(var(--page-gutter), var(--safe-area-inset-inline-start));
+  --safe-page-gutter-inline-end: max(var(--page-gutter), var(--safe-area-inset-inline-end));
+  --safe-panel-gutter-inline-start: max(var(--space-xl), var(--safe-area-inset-inline-start));
+  --safe-panel-gutter-inline-end: max(var(--space-xl), var(--safe-area-inset-inline-end));
+  --safe-mobile-header-height: calc(
+    var(--mobile-header-height) + var(--safe-area-inset-block-start)
+  );
+  --safe-rail-padding-block-start: max(var(--space-lg), var(--safe-area-inset-block-start));
+  --safe-rail-padding-block-end: max(var(--space-lg), var(--safe-area-inset-block-end));
+  --safe-footer-padding-block-end: calc(var(--space-2xl) + var(--safe-area-inset-block-end));
+  --safe-command-inset-block-start: max(var(--space-md), var(--safe-area-inset-block-start));
+  --safe-command-inset-inline-end: max(var(--space-md), var(--safe-area-inset-inline-end));
+  --safe-command-inset-block-end: max(var(--space-md), var(--safe-area-inset-block-end));
+  --safe-command-inset-inline-start: max(var(--space-md), var(--safe-area-inset-inline-start));
+  --measure: 65ch;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 400;
+  --z-tooltip: 600;
+}

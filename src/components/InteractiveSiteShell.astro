@@ -1,0 +1,33 @@
+---
+import CommandDialog from './CommandDialog.astro';
+import Navigation from './Navigation.astro';
+---
+
+<div data-interactive-site-shell>
+  <div data-site-shell-content>
+    <Navigation />
+    <div class="page-shell">
+      <slot />
+    </div>
+  </div>
+  <CommandDialog />
+</div>
+
+<style>
+  @media (max-width: 59.999rem) {
+    [data-site-shell-content] :global(#top),
+    [data-site-shell-content] :global(#about),
+    [data-site-shell-content] :global(#work),
+    [data-site-shell-content] :global(#building),
+    [data-site-shell-content] :global(#method),
+    [data-site-shell-content] :global(#participate) {
+      scroll-margin-top: var(--safe-mobile-header-height);
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .page-shell {
+      margin-inline-start: var(--rail-width);
+    }
+  }
+</style>

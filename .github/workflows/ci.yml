@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Install pinned toolchain
+        uses: jdx/mise-action@dad1bfd3df957f44999b559dd69dc1671cb4e9ea # v4.2.1
+        with:
+          install: true
+          cache: true
+
+      - name: Install dependencies from lockfile
+        run: mise exec -- pnpm install --frozen-lockfile
+
+      - name: Install Playwright Chromium
+        run: mise exec -- pnpm exec playwright install --with-deps chromium
+
+      - name: Verify types, build, accessibility, and browser behavior
+        run: mise exec -- pnpm verify
+
+      - name: Check documentation and built-site links
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: >-
+            --no-progress
+            --root-dir ./dist
+            --exclude '^https://matharts\.cn/?$'
+            README.md
+            public/llms.txt
+            "dist/**/*.html"
+          fail: true
+          failIfEmpty: true

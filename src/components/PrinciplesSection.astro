@@ -1,0 +1,162 @@
+---
+import SpatialBackdrop from './SpatialBackdrop.astro';
+---
+
+<section class="method principles" id="method" aria-labelledby="method-title">
+  <SpatialBackdrop variant="computation" class="principles__spatial" />
+  <header class="principles__head principles__head--full">
+    <h2 id="method-title">组织如何协作？</h2>
+    <p>MathArts 的组织治理明确区分组织政策与项目规则，并以公开记录、证据和清晰责任边界支持协作。</p>
+  </header>
+  <ol class="principles__grid">
+    <li>
+      <span>01</span>
+      <div>
+        <h3>公开优先</h3>
+        <p>不涉及安全、隐私或人员保护的决定，在可追溯的 Issue、Discussion 或 Pull Request 中作出。</p>
+      </div>
+    </li>
+    <li>
+      <span>02</span>
+      <div>
+        <h3>证据优先</h3>
+        <p>技术和领域判断尽可能引用定义、资料、测试、推导或可复现结果。</p>
+      </div>
+    </li>
+    <li>
+      <span>03</span>
+      <div>
+        <h3>最小权限</h3>
+        <p>组织、仓库、自动化和发布权限，只授予完成职责所需的主体。</p>
+      </div>
+    </li>
+    <li>
+      <span>04</span>
+      <div>
+        <h3>职责明确</h3>
+        <p>组织政策与项目规则分别维护，不建立含混的中间权威层。</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<style>
+  .principles {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    padding-block: clamp(var(--space-2xl), 8vw, var(--space-3xl));
+    padding-inline: var(--safe-page-gutter-inline-start) var(--safe-page-gutter-inline-end);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    border-block-start: var(--rule-thick) solid var(--color-ink);
+  }
+
+  .principles h2 {
+    min-width: 0;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-display-s);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    overflow-wrap: anywhere;
+  }
+
+  .principles__head > p {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: clamp(var(--text-base), calc(var(--text-base) + 0.28vw), var(--text-md));
+    line-height: 1.7;
+  }
+
+  .principles__head,
+  .principles__grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .principles__head {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .principles__grid {
+    margin: clamp(var(--space-2xl), 8vw, var(--space-3xl)) 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    border-block-end: var(--rule-thin) solid var(--color-rule);
+  }
+
+  .principles__grid li {
+    padding-block: var(--space-lg);
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: var(--space-lg);
+    border-block-start: var(--rule-thin) solid var(--color-rule);
+  }
+
+  .principles__grid li > span {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-muted);
+  }
+
+  .principles__grid h3 {
+    margin: 0 0 var(--space-xs);
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-style: normal;
+  }
+
+  .principles__grid p {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 60rem) {
+    .principles__head {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      align-items: end;
+    }
+
+    .principles__head > p {
+      justify-self: end;
+    }
+
+    .principles__head--full {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
+      padding-inline-end: calc(min(23rem, 28vw) + var(--space-xl));
+    }
+
+    .principles__head--full > p {
+      justify-self: start;
+    }
+
+    .principles :global(.principles__spatial) {
+      display: block;
+      inset-block-start: 0;
+      inset-inline-end: var(--safe-page-gutter-inline-end);
+      width: min(23rem, 28vw);
+      aspect-ratio: 1;
+      opacity: 0.5;
+    }
+
+    .principles__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .principles__grid li:nth-child(odd) {
+      padding-inline-end: var(--space-2xl);
+    }
+
+    .principles__grid li:nth-child(even) {
+      padding-inline-start: var(--space-2xl);
+      border-inline-start: var(--rule-thin) solid var(--color-rule);
+    }
+  }
+</style>

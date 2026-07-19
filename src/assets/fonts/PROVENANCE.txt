@@ -1,0 +1,4 @@
+Source: https://github.com/google/fonts
+Revision: 389b770410cc0b7c21c85673bfa2077420fe7f65
+FontTools: 4.63.0
+Generated with pyftsubset from the visible source glyph manifest.

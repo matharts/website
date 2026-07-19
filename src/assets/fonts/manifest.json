@@ -1,0 +1,13 @@
+{
+  "sourceRevision": "389b770410cc0b7c21c85673bfa2077420fe7f65",
+  "fontToolsVersion": "4.63.0",
+  "glyphs": {
+    "glyphs.txt": "60396e8af1ef6d4cbe4020849ca8cf56038196947a86b604a6a896d3a1fff4bc",
+    "serif-glyphs.txt": "cfaaa67cbbdc5ab54bfe621a46eac13e54e27a52f0195270c90ffbe1b9542e3e"
+  },
+  "files": {
+    "ibm-plex-sans.woff2": "053589ae9caf3dec89bbbf698cb85082934c7a83b7a7be6f0c283661ad94b18c",
+    "noto-sans-sc.woff2": "6e51f556b89b1aa4d54dfedf5e20c35caf050ee15926d903ae38d0633dfd99fc",
+    "noto-serif-sc.woff2": "3f1fa17a8d0026df818c99cd9cf0e0c2ddb01410ea20288842700fec3c7c5f91"
+  }
+}

@@ -1,0 +1,101 @@
+---
+import { Font } from "astro:assets";
+import { publicationMetadata } from "../data/seo";
+import { siteDiscovery } from "../data/site-discovery";
+import tokenSource from "../styles/tokens.css?raw";
+import "../styles/tokens.css";
+import "../styles/base.css";
+
+type PageMetadataOptions = Parameters<typeof publicationMetadata.forPage>[0];
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: PageMetadataOptions["image"];
+  noindex?: boolean;
+}
+
+function requireCssToken(source: string, name: string): string {
+  const value = source.match(new RegExp(`${name}\\s*:\\s*([^;]+)`))?.[1]?.trim();
+
+  if (!value) throw new Error(`[SiteLayout] Missing required design token: ${name}`);
+  return value;
+}
+
+const browserThemeColor = requireCssToken(tokenSource, "--color-ink");
+
+const metadata = publicationMetadata.forPage({
+  url: Astro.url,
+  site: Astro.site,
+  title: Astro.props.title,
+  description: Astro.props.description,
+  image: Astro.props.image,
+  noindex: Astro.props.noindex
+});
+
+const {
+  title,
+  description,
+  image,
+  siteName,
+  language,
+  locale,
+  canonicalURL,
+  socialImageURL,
+  robots,
+  indexable,
+  structuredData
+} = metadata;
+---
+
+<!doctype html>
+<html lang={language}>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="description" content={description} />
+    <meta
+      name="robots"
+      content={robots}
+    />
+    <meta name="theme-color" content={browserThemeColor} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:width" content={String(image.width)} />
+    <meta property="og:image:height" content={String(image.height)} />
+    <meta property="og:image:alt" content={image.alt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>{title}</title>
+    {indexable && <link rel="canonical" href={canonicalURL} />}
+    <link rel="sitemap" href={siteDiscovery.paths.sitemap} />
+    <link
+      rel="alternate"
+      type="text/plain"
+      href={siteDiscovery.paths.llms}
+      title="MathArts llms.txt"
+    />
+    <link rel="icon" href="/avatar.png" type="image/png" />
+    <Font cssVariable="--font-ibm-plex-sans" />
+    <Font cssVariable="--font-noto-sans-sc" />
+    <Font cssVariable="--font-noto-serif-sc" preload />
+    {structuredData && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(structuredData)}
+        is:inline
+      />
+    )}
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

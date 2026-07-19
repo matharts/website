@@ -1,0 +1,223 @@
+---
+import { siteContent } from '../data/site';
+
+const projectGroups = siteContent.work;
+---
+
+<section class="work" id="work" aria-labelledby="work-title">
+  <header class="work__head">
+    <h2 id="work-title">做了哪些事情？</h2>
+    <p>MathArts 的公开工作分为领域引擎、生态基础设施，以及工具与治理三类。每项均链接到对应 GitHub 仓库，可查看代码与仓库内公开资料。</p>
+  </header>
+
+  <div class="work__catalog">
+    {projectGroups.map((group, groupIndex) => (
+      <article class="work-track">
+        <span class="work-track__index" aria-hidden="true">{String(groupIndex + 1).padStart(2, '0')}</span>
+        <div class="work-track__intro">
+          <h3>{group.title}</h3>
+          <p>{group.description}</p>
+        </div>
+        <ol class="work-track__projects" aria-label={`${group.title}项目`}>
+          {group.projects.map((project) => (
+            <li class="project"><span><strong><a href={project.url} target="_blank" rel="noreferrer">{project.title} ↗</a></strong><span class="project__description">{project.description}</span></span></li>
+          ))}
+        </ol>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .work {
+    background: var(--color-paper-2);
+    color: var(--color-ink);
+  }
+
+  .work__head {
+    padding-block: clamp(var(--space-2xl), 8vw, var(--space-3xl));
+    padding-inline: var(--safe-page-gutter-inline-start) var(--safe-page-gutter-inline-end);
+    display: grid;
+    gap: var(--space-xl);
+    border-block-end: var(--rule-thin) solid var(--color-rule);
+  }
+
+  .work__head h2 {
+    min-width: 0;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-display-s);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    overflow-wrap: anywhere;
+  }
+
+  .work__head > p {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--color-ink-2);
+    font-size: clamp(var(--text-base), calc(var(--text-base) + 0.28vw), var(--text-md));
+    line-height: 1.7;
+  }
+
+  .work__catalog {
+    padding-block-end: clamp(var(--space-2xl), 8vw, var(--space-3xl));
+    padding-inline: var(--safe-page-gutter-inline-start) var(--safe-page-gutter-inline-end);
+    display: grid;
+  }
+
+  .work-track {
+    min-width: 0;
+    padding-block: clamp(var(--space-xl), 5vw, var(--space-2xl));
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    column-gap: var(--space-md);
+    row-gap: var(--space-xl);
+    align-items: start;
+    border-block-start: var(--rule-thin) solid var(--color-ink);
+  }
+
+  .work-track:last-child {
+    border-block-end: var(--rule-thin) solid var(--color-ink);
+  }
+
+  .work-track__index {
+    grid-column: 1;
+    grid-row: 1;
+    padding-block-start: var(--space-xs);
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.12em;
+    line-height: 1;
+  }
+
+  .work-track__intro {
+    min-width: 0;
+    grid-column: 2;
+    grid-row: 1;
+    display: grid;
+    align-content: start;
+    gap: var(--space-md);
+  }
+
+  .work-track__intro h3 {
+    min-width: 0;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  .work-track__intro p {
+    max-width: var(--measure);
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
+  .work-track__projects {
+    min-width: 0;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    border-block-start: var(--rule-thin) solid var(--color-rule);
+  }
+
+  .project {
+    min-width: 0;
+    min-height: 7rem;
+    padding-block: var(--space-lg);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    border-block-end: var(--rule-thin) solid var(--color-rule);
+    color: inherit;
+  }
+
+  .project > span {
+    min-width: 0;
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .project strong {
+    min-width: 0;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  .project__description {
+    color: inherit;
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    opacity: 0.72;
+  }
+
+  .project strong a {
+    min-height: var(--target-min);
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    text-underline-offset: var(--underline-offset);
+    white-space: nowrap;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .project:hover strong {
+      text-decoration: underline;
+      text-underline-offset: var(--underline-offset);
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .work__head {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+      align-items: end;
+    }
+
+    .work__head > p {
+      justify-self: end;
+    }
+
+    .work-track__projects {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .project:nth-child(odd) {
+      padding-inline-end: var(--space-xl);
+      border-inline-end: var(--rule-thin) solid var(--color-rule);
+    }
+
+    .project:nth-child(even) {
+      padding-inline-start: var(--space-xl);
+    }
+  }
+
+  @media (min-width: 60rem) {
+    .work-track {
+      grid-template-columns: 3rem minmax(12rem, 0.65fr) minmax(0, 1.35fr);
+      column-gap: var(--space-xl);
+      row-gap: 0;
+    }
+
+    .work-track__intro {
+      grid-column: 2;
+    }
+
+    .work-track__projects {
+      grid-column: 3;
+      grid-row: 1;
+    }
+  }
+</style>

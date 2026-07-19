@@ -1,0 +1,46 @@
+{
+  "name": "matharts-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "fonts:check": "nub scripts/check-font-glyphs.ts",
+    "fonts:update": "nub scripts/update-local-fonts.ts",
+    "check": "astro check",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint .",
+    "lighthouse": "node scripts/run-lighthouse.mjs",
+    "lighthouse:check": "node scripts/run-lighthouse.mjs --check",
+    "test:e2e": "playwright test",
+    "verify": "pnpm fonts:check && pnpm check && pnpm lint && pnpm format:check && pnpm test:e2e"
+  },
+  "dependencies": {
+    "astro": "7.1.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.9",
+    "@astrojs/sitemap": "3.7.3",
+    "@axe-core/playwright": "4.12.1",
+    "@jdevalk/astro-seo-graph": "2.2.0",
+    "@playwright/test": "1.61.1",
+    "lighthouse": "13.4.0",
+    "oxfmt": "0.59.0",
+    "oxlint": "1.74.0",
+    "oxlint-tsgolint": "0.25.0",
+    "sharp": "0.35.3",
+    "typescript": "6.0.3"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.15.0"
+    },
+    "runtime": {
+      "name": "node",
+      "version": ">=24.18.0"
+    }
+  },
+  "packageManager": "pnpm@11.15.0"
+}

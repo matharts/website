@@ -1,0 +1,66 @@
+<svg
+  class="development-diagram"
+  viewBox="0 0 720 720"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+>
+  <g class="development-diagram__grid">
+    <path d="M72 72H648M72 168H648M72 264H648M72 360H648M72 456H648M72 552H648M72 648H648" />
+    <path d="M72 72V648M168 72V648M264 72V648M360 72V648M456 72V648M552 72V648M648 72V648" />
+  </g>
+
+  <g class="development-diagram__frame">
+    <path d="M72 144V72H144M576 72H648V144M648 576V648H576M144 648H72V576" />
+    <circle cx="360" cy="360" r="192" />
+    <circle cx="360" cy="360" r="120" />
+    <path d="M360 120V600M120 360H600" />
+  </g>
+
+  <g class="development-diagram__orbit">
+    <path d="M212 238C270 154 408 142 500 214C591 286 604 422 529 507C454 592 317 601 229 528C141 455 129 322 212 238Z" />
+    <path d="M237 503C167 426 165 307 235 229C305 151 424 137 510 198" />
+  </g>
+
+  <g class="development-diagram__hub">
+    <circle cx="360" cy="360" r="54" />
+    <path d="M328 360H392M360 328V392" />
+    <circle cx="360" cy="360" r="8" />
+  </g>
+
+  <g class="development-diagram__node development-diagram__node--rules">
+    <circle cx="208" cy="214" r="34" />
+    <path d="M192 214H224M208 198V230" />
+  </g>
+
+  <g class="development-diagram__node development-diagram__node--calendar">
+    <rect x="478" y="178" width="68" height="68" />
+    <circle cx="512" cy="212" r="15" />
+    <path d="M512 190V178M512 246V234M490 212H478M546 212H534" />
+  </g>
+
+  <g class="development-diagram__node development-diagram__node--tools">
+    <path d="M180 492L214 458L248 492L214 526Z" />
+    <circle cx="214" cy="492" r="9" />
+    <path d="M214 458V432M180 492H154M214 526V552M248 492H274" />
+  </g>
+
+  <g class="development-diagram__node development-diagram__node--governance">
+    <rect x="472" y="466" width="76" height="58" />
+    <path d="M488 484H532M488 496H524M488 508H516" />
+    <path d="M484 454H560V512" />
+  </g>
+
+  <g class="development-diagram__connections">
+    <path d="M232 239L321 323M487 239L399 323M239 468L321 397M481 467L399 397" />
+    <circle cx="321" cy="323" r="5" />
+    <circle cx="399" cy="323" r="5" />
+    <circle cx="321" cy="397" r="5" />
+    <circle cx="399" cy="397" r="5" />
+  </g>
+
+  <g class="development-diagram__marks">
+    <path d="M96 336H132M588 336H624M336 96V132M336 588V624" />
+    <path d="M104 608H120M128 608H144M576 112H592M600 112H616" />
+  </g>
+</svg>

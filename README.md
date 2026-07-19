@@ -1,46 +1,69 @@
-# MathArts Open Source Website
+<a href="https://matharts.cn/">
+  <img
+    src="./public/preview.png"
+    alt="MathArts 官网首页：用象数描述万物，用术法计算万物"
+    width="1200"
+  >
+</a>
 
-MathArts 开源组织官网，内容基于 [github.com/matharts](https://github.com/matharts) 的公开组织资料与仓库信息。
+# matharts.cn
 
-## 本地预览
+本仓库包含 [MathArts 官网](https://matharts.cn/) 源码，并使用 Astro 构建静态网站。
+
+MathArts 以现代数学、计算机科学与软件工程，建设开放、可追溯、可验证的中国数术数字基础设施。
+
+## 开始开发
+
+项目通过 [`mise.toml`](./mise.toml) 固定 Node.js、pnpm 和 nub 版本。nub 使用现有的 `pnpm-lock.yaml` 安装依赖并运行项目脚本。安装 [mise](https://mise.jdx.dev/) 后，准备运行时和项目依赖：
 
 ```bash
-python3 -m http.server 4173
+mise install
+nub install
 ```
 
-然后打开 <http://127.0.0.1:4173>。
+启动 Astro 开发服务器：
 
-## 设计系统
+```bash
+nub run dev
+```
 
-- Hallmark `Split Studio` 宏结构
-- 定制“黑白东方学术系统”主题
-- 近白纸、蓝墨黑与中性石墨 OKLCH 色板
-- Noto Serif SC + IBM Plex Sans + Noto Sans SC 中西文排印
-- N3 Side Rail 桌面导航；移动端粘性折叠菜单；当前章节同步指示
-- Ft1 Mast-headed 品牌页脚
-- 五档响应式验证：320 / 375 / 414 / 768 / 1280 px
-- 原生 HTML / CSS / JavaScript，无构建依赖
+浏览器打开 `http://localhost:4321`。
 
-## 信息结构
+## 构建并预览
 
-1. 首屏呈现 MathArts 官方定位与品牌主张
-2. 组织定位与开放原则
-3. 领域引擎、生态基础设施、工具与治理
-4. 公开优先、证据优先、最小权限与职责明确的组织治理原则
-5. 关注、浏览、讨论与贡献入口
+构建静态网站并启动本地生产预览：
 
-## 文件
+```bash
+nub run build
+nub run preview
+```
 
-- `index.html` — 语义化页面内容
-- `styles.css` — Hallmark 页面结构、组件与响应式样式
-- `tokens.css` — 定制设计令牌
-- `script.js` — 当前章节追踪与 ⌘K / Ctrl+K 无障碍项目检索
-- `avatar.png` — MathArts GitHub 组织头像
-- `preview.png` — 1280 × 800 桌面预览
+## 运行质量检查
 
-## 键盘操作
+运行字体字符清单、Astro 检查、代码检查、格式检查和 Playwright 端到端测试：
 
-- `⌘K` / `Ctrl+K`：打开或关闭检索
-- `↑` / `↓`：移动当前结果
-- `Enter`：打开结果
-- `Esc`：关闭检索
+```bash
+nub run verify
+```
+
+本地字体的来源与更新方式参见 [`docs/FONTS.md`](./docs/FONTS.md)。
+
+运行本地生产构建的移动端与桌面端 Lighthouse 审计（需要本机安装 Chrome）：
+
+```bash
+nub run lighthouse
+```
+
+发布前按项目阈值执行 Lighthouse 门禁：
+
+```bash
+nub run lighthouse:check
+```
+
+门禁要求移动端 Performance 不低于 90，移动端与桌面端的 Accessibility、Best Practices 和 SEO 均为 100，同时限制 CLS、TBT 和实验室 LCP。HTML 与 JSON 报告写入忽略版本控制的 `output/lighthouse/`。
+
+## 参与 MathArts
+
+- [浏览公开项目](https://github.com/matharts)
+- [阅读贡献指南](https://github.com/matharts/.github/blob/main/CONTRIBUTING.md)
+- [参与开放讨论](https://github.com/orgs/matharts/discussions)

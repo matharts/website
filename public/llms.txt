@@ -1,0 +1,21 @@
+# MathArts
+
+> MathArts 以现代数学、计算机科学与软件工程，建设开放、可追溯、可验证的中国数术数字基础设施。
+
+## Website
+
+- [MathArts 首页](https://matharts.cn/): 组织定位、公开成果、治理原则与参与入口。
+
+## Open-source repositories
+
+- [ziwei](https://github.com/matharts/ziwei): 标准驱动的紫微斗数排盘引擎。
+- [epheon](https://github.com/matharts/epheon): 标准驱动的天文历法引擎。
+- [matharts](https://github.com/matharts/matharts): 生态基础设施与核心标准库。
+- [skills](https://github.com/matharts/skills): 可复用的 Agent Skills 与能力模块。
+- [sync-labels-action](https://github.com/matharts/sync-labels-action): 组织级 GitHub 标签同步工具。
+- [.github](https://github.com/matharts/.github): 组织治理、社区文件与贡献入口。
+
+## Participation
+
+- [Discussions](https://github.com/orgs/matharts/discussions): 开放问题、方向讨论与跨仓库想法。
+- [贡献指南](https://github.com/matharts/.github/blob/main/CONTRIBUTING.md): 参与文档、测试与代码实现。

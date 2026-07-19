@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.pnpm-store/
+.mise.local.toml
+playwright-report/
+test-results/
+blob-report/
+
+# Local agent planning state; project-level skills in .agents remain versioned.
+.hermes/
+output/
