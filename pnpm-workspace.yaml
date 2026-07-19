@@ -2,8 +2,9 @@ packages:
   - .
 
 allowBuilds:
-  cn-font-split: set this to true or false
+  cn-font-split: true
   esbuild: true
-  koffi: set this to true or false
-  protobufjs: set this to true or false
+  koffi: true
+  protobufjs: true
   sharp: true
+  workerd: true
