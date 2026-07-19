@@ -3,12 +3,16 @@ import seoGraph from "@jdevalk/astro-seo-graph/integration";
 import { defineConfig, fontProviders } from "astro/config";
 import { siteDiscovery } from "./src/data/site-discovery.ts";
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   site: siteDiscovery.origin,
   output: "static",
+
   build: {
     inlineStylesheets: "always"
   },
+
   integrations: [
     sitemap(),
     seoGraph({
@@ -22,6 +26,7 @@ export default defineConfig({
       validateInternalLinks: true
     })
   ],
+
   fonts: [
     {
       provider: fontProviders.local(),
@@ -68,5 +73,7 @@ export default defineConfig({
         ]
       }
     }
-  ]
+  ],
+
+  adapter: cloudflare()
 });
