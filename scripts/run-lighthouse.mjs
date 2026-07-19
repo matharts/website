@@ -112,6 +112,7 @@ async function runLighthouse(url, profile) {
     "--output=html",
     "--output=json",
     `--output-path=${join(outputDirectory, profile.name)}`,
+    "--chrome-flags=--headless",
     "--quiet",
     ...profile.arguments
   ]);
