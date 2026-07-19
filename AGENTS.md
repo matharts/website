@@ -44,3 +44,17 @@
 - 当代码或配置变更导致本文件中的命令、路径或约定失效时，在同一任务中更新本文件。
 - 将重复出现的错误假设或评审反馈写入适用范围最近的 `AGENTS.md`；仅在需要临时替换同目录规则时使用 `AGENTS.override.md`。
 - 完成任务后报告修改文件、执行的命令、结果和剩余风险。
+
+## Agent skills
+
+### 议题跟踪器
+
+议题和 PRD 统一记录在本仓库的 GitHub Issues 中。详见 `docs/agents/issue-tracker.md`。
+
+### Triage 标签
+
+使用五个默认 triage 标签，不设置覆盖映射。详见 `docs/agents/triage-labels.md`。
+
+### 领域文档
+
+本仓库采用 single-context 布局，在仓库根目录维护 `CONTEXT.md` 和 `docs/adr/`。详见 `docs/agents/domain.md`。
