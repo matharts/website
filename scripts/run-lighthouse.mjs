@@ -14,6 +14,11 @@ const profiles = [
   { name: "mobile", arguments: [] },
   { name: "desktop", arguments: ["--preset=desktop"] }
 ];
+const chromeFlags = ["--headless"];
+
+if (process.platform === "linux" && process.env.GITHUB_ACTIONS === "true") {
+  chromeFlags.push("--no-sandbox");
+}
 
 const thresholds = {
   categories: {
@@ -112,7 +117,7 @@ async function runLighthouse(url, profile) {
     "--output=html",
     "--output=json",
     `--output-path=${join(outputDirectory, profile.name)}`,
-    "--chrome-flags=--headless",
+    `--chrome-flags=${chromeFlags.join(" ")}`,
     "--quiet",
     ...profile.arguments
   ]);
