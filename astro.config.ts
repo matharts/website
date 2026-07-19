@@ -3,8 +3,6 @@ import seoGraph from "@jdevalk/astro-seo-graph/integration";
 import { defineConfig, fontProviders } from "astro/config";
 import { siteDiscovery } from "./src/data/site-discovery.ts";
 
-import cloudflare from "@astrojs/cloudflare";
-
 export default defineConfig({
   site: siteDiscovery.origin,
   output: "static",
@@ -73,7 +71,5 @@ export default defineConfig({
         ]
       }
     }
-  ],
-
-  adapter: cloudflare()
+  ]
 });
