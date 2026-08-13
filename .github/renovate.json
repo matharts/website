@@ -3,6 +3,7 @@
   "extends": ["config:recommended", ":semanticCommits"],
   "labels": ["dependencies"],
   "assignees": ["lzm0x219"],
+  "dependencyDashboard": true,
   "packageRules": [
     {
       "groupName": "oxc",
