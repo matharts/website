@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":semanticCommits"],
+  "labels": ["dependencies"],
+  "assignees": ["lzm0x219"],
+  "dependencyDashboard": true,
+  "packageRules": [
+    {
+      "groupName": "oxc",
+      "matchPackageNames": ["ox**"]
+    },
+    {
+      "description": "astro check still needs TypeScript 6.x programmatic API",
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7"
+    }
+  ],
+  "autoApprove": true,
+  "automerge": false,
+  "automergeStrategy": "squash",
+  "ignoreTests": false
+}
