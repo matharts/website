@@ -18,10 +18,10 @@
     "deploy": "pnpm build && wrangler deploy"
   },
   "dependencies": {
-    "astro": "7.1.1"
+    "astro": "7.2.1"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.9",
+    "@astrojs/check": "0.9.10",
     "@astrojs/sitemap": "3.7.3",
     "@axe-core/playwright": "4.12.1",
     "@jdevalk/astro-seo-graph": "2.2.0",
