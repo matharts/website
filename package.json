@@ -29,7 +29,7 @@
     "lighthouse": "13.4.0",
     "oxfmt": "0.63.0",
     "oxlint": "1.78.0",
-    "oxlint-tsgolint": "0.25.0",
+    "oxlint-tsgolint": "7.0.2001",
     "sharp": "0.35.3",
     "typescript": "6.0.3",
     "wrangler": "4.112.0"
