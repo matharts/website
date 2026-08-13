@@ -2,7 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import { GET as getApiCatalog } from "../src/pages/.well-known/api-catalog";
 import { GET as getSiteSchema } from "../src/pages/schema/site.json";
-import { GET as getSchemaMap } from "../src/pages/schemamap.xml";
+import { GET as getSchemaMap, schemaLastModified } from "../src/pages/schemamap.xml";
 
 function projectSearch(page: Page) {
   const dialog = page.getByRole("dialog", {
@@ -137,7 +137,9 @@ test("serves complete metadata and crawl discovery files", async ({ page, reques
   expect(schemaMap.headers()["content-type"]).toMatch(/^(?:application|text)\/xml/);
   const schemaMapXML = await schemaMap.text();
   expect(schemaMapXML).toContain("<loc>https://matharts.cn/schema/site.json</loc>");
-  expect(schemaMapXML).toContain("<lastmod>2026-07-19</lastmod>");
+  expect(schemaMapXML).toContain(
+    `<lastmod>${schemaLastModified.toISOString().split("T")[0]}</lastmod>`
+  );
 
   const apiCatalog = await request.get("/.well-known/api-catalog");
   expect(apiCatalog.ok()).toBe(true);

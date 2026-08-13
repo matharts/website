@@ -4,7 +4,7 @@ import { siteDiscovery } from "../data/site-discovery";
 export const prerender = true;
 
 const [siteSchema] = siteDiscovery.schemas;
-const schemaLastModified =
+export const schemaLastModified =
   gitLastmod(siteSchema.lastModifiedSource) ?? new Date(siteSchema.fallbackLastModified);
 
 export const GET = createSchemaMap({
