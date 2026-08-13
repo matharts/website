@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { createHash, type BinaryLike } from "node:crypto";
+import { createHash } from "node:crypto";
 import {
   copyFileSync,
   mkdirSync,
@@ -76,7 +76,7 @@ const coverageScript = [
   "if missing: raise SystemExit('Missing codepoints: ' + ', '.join(f'U+{value:04X}' for value in missing))"
 ].join("\n");
 
-function sha256(content: BinaryLike): string {
+function sha256(content: string | Buffer): string {
   return createHash("sha256").update(content).digest("hex");
 }
 

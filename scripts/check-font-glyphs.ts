@@ -1,4 +1,4 @@
-import { createHash, type BinaryLike } from "node:crypto";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { fontToolsVersion, fonts, googleFontsRevision } from "./font-config.ts";
@@ -18,7 +18,7 @@ const glyphManifests = {
   "serif-glyphs.txt": collectSerifFontGlyphs(projectRoot).join("")
 };
 
-function sha256(content: BinaryLike): string {
+function sha256(content: string | Buffer): string {
   return createHash("sha256").update(content).digest("hex");
 }
 
