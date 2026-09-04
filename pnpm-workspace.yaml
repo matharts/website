@@ -1,6 +1,10 @@
 packages:
   - .
 
+minimumReleaseAgeExclude:
+  - astro
+  - wrangler
+
 allowBuilds:
   cn-font-split: true
   esbuild: true
