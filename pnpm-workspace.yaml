@@ -4,6 +4,8 @@ packages:
 minimumReleaseAgeExclude:
   - astro
   - wrangler
+  - miniflare
+  - "@cloudflare/workerd"
 
 allowBuilds:
   cn-font-split: true
