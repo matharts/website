@@ -33,7 +33,19 @@ jobs:
         run: mise exec -- pnpm install --frozen-lockfile
 
       - name: Install Playwright Chromium
-        run: mise exec -- pnpm exec playwright install --with-deps chromium
+        run: |
+          set -euo pipefail
+          # --with-deps sometimes fails on transient Google Chrome apt Hash Sum mismatch.
+          # Retry a few times, then fall back to browser-only install (ubuntu-latest usually has libs).
+          if ! mise exec -- pnpm exec playwright install --with-deps chromium; then
+            echo "Playwright --with-deps failed; cleaning apt lists and retrying..."
+            sudo rm -rf /var/lib/apt/lists/*
+            sudo apt-get clean
+            if ! mise exec -- pnpm exec playwright install --with-deps chromium; then
+              echo "Playwright --with-deps still failing; installing browser without OS deps"
+              mise exec -- pnpm exec playwright install chromium
+            fi
+          fi
 
       - name: Verify types, build, accessibility, and browser behavior
         run: mise exec -- pnpm verify
