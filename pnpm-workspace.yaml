@@ -3,9 +3,16 @@ packages:
 
 minimumReleaseAgeExclude:
   - astro
+  - "@astrojs/markdown-satteri"
   - wrangler
   - miniflare
+  - workerd
   - "@cloudflare/workerd"
+  - "@cloudflare/workerd-darwin-64"
+  - "@cloudflare/workerd-darwin-arm64"
+  - "@cloudflare/workerd-linux-64"
+  - "@cloudflare/workerd-linux-arm64"
+  - "@cloudflare/workerd-windows-64"
 
 allowBuilds:
   cn-font-split: true
