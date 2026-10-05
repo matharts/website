@@ -10,6 +10,7 @@
 
 - 使用 `mise.toml` 锁定的 Node.js、pnpm 和 nub 版本；`mise.toml` 是工具版本的单一事实来源。
 - 依赖管理仅使用 pnpm，并保留 `pnpm-lock.yaml`；不要改用 npm、Yarn 或 Bun，也不要全局安装项目依赖。
+- pnpm 默认启用 1 天（`1440` 分钟）的 `minimumReleaseAge` 供应链策略。`.github/renovate.json` 的 `minimumReleaseAge` 与包例外必须与 `pnpm-workspace.yaml` 的 `minimumReleaseAgeExclude` 保持一致，否则 Renovate 会创建过新版本的 PR，并在 CI 触发 `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION`。
 - 常用命令：
   - `pnpm dev`：启动本地开发服务器。
   - `pnpm build`：生成静态站点。

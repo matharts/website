@@ -4,7 +4,21 @@
   "labels": ["dependencies"],
   "assignees": ["lzm0x219"],
   "dependencyDashboard": true,
+  "minimumReleaseAge": "1 day",
   "packageRules": [
+    {
+      "description": "Mirror pnpm minimumReleaseAgeExclude: these packages bypass the 1-day supply-chain age policy",
+      "matchPackageNames": [
+        "astro",
+        "@astrojs/markdown-satteri",
+        "wrangler",
+        "miniflare",
+        "workerd",
+        "@cloudflare/workerd",
+        "@cloudflare/workerd-**"
+      ],
+      "minimumReleaseAge": null
+    },
     {
       "groupName": "oxc",
       "matchPackageNames": ["ox**"]
