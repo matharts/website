@@ -6,12 +6,12 @@ import { siteContent } from '../data/site';
   <form method="dialog" class="command__surface">
     <div class="command__search">
       <label for="command-input" id="command-title">检索项目与页面</label>
-      <input id="command-input" type="search" role="combobox" autocomplete="off" placeholder="例如：历法、Agent、贡献" aria-controls="command-results" aria-describedby="command-status" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" data-project-search-input>
+      <input id="command-input" type="search" role="combobox" autocomplete="off" placeholder="例如：历法、紫微、贡献" aria-controls="command-results" aria-describedby="command-status" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" data-project-search-input>
       <button class="command__close" type="submit" value="close" aria-label="关闭检索">关闭</button>
     </div>
     <p class="command__status" id="command-status" role="status" aria-live="polite" data-project-search-status>{siteContent.search.statusText}</p>
     <div class="command__results" id="command-results" role="listbox" aria-label="检索结果" data-project-search-results></div>
-    <div class="command__empty" hidden data-project-search-empty>未找到匹配项。试试“历法”“Agent”或“贡献”。</div>
+    <div class="command__empty" hidden data-project-search-empty>未找到匹配项。试试“历法”“紫微”或“贡献”。</div>
     <div class="command__hints"><span>↑ ↓ 选择</span><span>Enter 打开</span><span>Esc 关闭</span></div>
   </form>
 </dialog>

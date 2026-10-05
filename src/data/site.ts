@@ -50,7 +50,7 @@ const navigationItems = [
     mobileLabel: "浏览成果",
     search: {
       title: "公开成果",
-      detail: "浏览六项公开工作",
+      detail: "浏览五项公开工作",
       keys: "仓库 项目 开源"
     }
   },
@@ -101,51 +101,44 @@ const projectGroups: readonly ProjectGroup[] = [
         url: "https://github.com/matharts/ziwei"
       },
       {
-        title: "epheon",
+        title: "astro",
         description: "MathArts 开放源码生态的标准驱动天文历法引擎",
         searchDetail: "标准驱动天文历法引擎",
         searchKeys: "天文 历法",
-        url: "https://github.com/matharts/epheon"
+        url: "https://github.com/matharts/astro"
       }
     ]
   },
   {
     title: "生态基础设施",
-    description: "为 MathArts 开放源码生态提供基础设施、核心标准库和可复用 Agent Skills。",
+    description: "为 MathArts 开放源码生态提供基础设施、核心标准库与领域应用。",
     tone: "paper",
     reverse: true,
     projects: [
       {
-        title: "matharts",
+        title: "core",
         description: "MathArts 开放源码生态的基础设施与核心标准库",
         searchDetail: "生态基础设施与核心标准库",
         searchKeys: "基础设施 核心 标准",
-        url: "https://github.com/matharts/matharts"
+        url: "https://github.com/matharts/core"
       },
       {
-        title: "skills",
-        description: "MathArts 开放源码生态的可复用 Agent Skills 与能力模块仓库",
-        searchDetail: "可复用 Agent Skills 与能力模块",
-        searchKeys: "Agent AI 技能 能力",
-        url: "https://github.com/matharts/skills"
+        title: "ziwei-atlas",
+        description: "面向紫微斗数命理师的专业工作台，用于教学、整理与分析案例",
+        searchDetail: "紫微斗数命理师专业工作台",
+        searchKeys: "紫微 斗数 工作台 案例",
+        url: "https://github.com/matharts/ziwei-atlas"
       }
     ]
   },
   {
     title: "工具与治理",
-    description: "维护组织级标签、公共配置、贡献入口与必要的跨仓库自动化。",
+    description: "维护组织主页、社区文件、贡献入口与跨仓库协作规范。",
     tone: "ink",
     projects: [
       {
-        title: "sync-labels-action",
-        description: "使用标签清单与所有权策略，同步组织管理的 GitHub 标签并保留仓库自行维护的标签",
-        searchDetail: "组织级 GitHub 标签同步",
-        searchKeys: "标签 GitHub Action 治理",
-        url: "https://github.com/matharts/sync-labels-action"
-      },
-      {
         title: ".github",
-        description: "组织主页、治理、默认社区文件、贡献入口与跨仓库自动化",
+        description: "MathArts 官方主页，汇集组织介绍、品牌与社区文档",
         searchDetail: "组织治理、社区文件与贡献入口",
         searchKeys: "社区 治理 贡献 自动化",
         url: "https://github.com/matharts/.github"

@@ -208,8 +208,8 @@ test("keeps navigation targets and search projections consistent", async ({ page
 
   const search = projectSearch(page);
   await search.trigger.click();
-  await expect(search.dialog.getByRole("option")).toHaveCount(11);
-  await expect(search.status).toHaveText("6 个项目 · 5 个导航入口");
+  await expect(search.dialog.getByRole("option")).toHaveCount(10);
+  await expect(search.status).toHaveText("5 个项目 · 5 个导航入口");
   await expect(
     search.dialog.getByRole("option", { name: "ziwei，标准驱动紫微斗数排盘引擎，新标签页打开" })
   ).toBeVisible();
@@ -270,7 +270,7 @@ test("keeps combobox focus on the input and activates an internal result", async
   await expect(search.dialog).toBeVisible();
   await expect(search.input).toBeFocused();
   await expect(search.input).toHaveAttribute("aria-expanded", "true");
-  await expect(search.status).toHaveText("6 个项目 · 5 个导航入口");
+  await expect(search.status).toHaveText("5 个项目 · 5 个导航入口");
 
   await search.input.fill("了解组织");
   await expect(search.status).toHaveText("1 项匹配");
@@ -403,9 +403,11 @@ test("uses distinct structures across homepage sections", async ({ page }) => {
   await expect(page.locator("#about.manifesto .manifesto__aside")).toHaveCount(1);
   const workTracks = page.locator("#work .work__catalog > .work-track");
   await expect(workTracks).toHaveCount(3);
-  for (const track of await workTracks.all()) {
-    await expect(track.locator(".work-track__projects > .project")).toHaveCount(2);
-  }
+  await expect(page.locator("#work .work-track__projects > .project")).toHaveCount(5);
+  const projectsPerTrack = await workTracks.evaluateAll((tracks) =>
+    tracks.map((track) => track.querySelectorAll(".project").length)
+  );
+  expect(projectsPerTrack).toEqual([2, 2, 1]);
 
   const [trackColumns, projectColumns] = await Promise.all([
     workTracks.first().evaluate((element) => getComputedStyle(element).gridTemplateColumns),

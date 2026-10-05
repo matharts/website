@@ -9,10 +9,9 @@
 ## Open-source repositories
 
 - [ziwei](https://github.com/matharts/ziwei): 标准驱动的紫微斗数排盘引擎。
-- [epheon](https://github.com/matharts/epheon): 标准驱动的天文历法引擎。
-- [matharts](https://github.com/matharts/matharts): 生态基础设施与核心标准库。
-- [skills](https://github.com/matharts/skills): 可复用的 Agent Skills 与能力模块。
-- [sync-labels-action](https://github.com/matharts/sync-labels-action): 组织级 GitHub 标签同步工具。
+- [astro](https://github.com/matharts/astro): 标准驱动的天文历法引擎。
+- [ziwei-atlas](https://github.com/matharts/ziwei-atlas): 面向紫微斗数命理师的专业工作台，用于教学、整理与分析案例。
+- [core](https://github.com/matharts/core): 生态基础设施与核心标准库。
 - [.github](https://github.com/matharts/.github): 组织治理、社区文件与贡献入口。
 
 ## Participation

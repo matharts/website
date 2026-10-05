@@ -202,6 +202,12 @@ const projectGroups = siteContent.work;
     .project:nth-child(even) {
       padding-inline-start: var(--space-xl);
     }
+
+    .project:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      padding-inline-end: 0;
+      border-inline-end: none;
+    }
   }
 
   @media (min-width: 60rem) {
